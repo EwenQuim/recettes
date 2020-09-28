@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+  <h2>Toutes les recettes</h2>
+
+  <ul>
+  {% for recette in recettes %}
+    <li>
+      <h3> {{ recette.name }}  </h3>
+      <p>  {{ recette.short }} </p>
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

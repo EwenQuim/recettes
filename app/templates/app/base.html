@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Recettes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
+        
+    </head>
+
+    <body>
+
+        {% include "../app/navbar.html" %}    
+
+        {% block content %}{% endblock %}
+
+        {% include "../app/footer.html" %} 
+
+    </body>
+</html>
