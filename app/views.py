@@ -13,8 +13,9 @@ def listing(request):
     context["recettes"] = Recette.objects.all()
     return render(request, 'app/listing.html', context)
 
-def detail(request, id):
-    return HttpResponse("Hello")
+def detail(request, recette_id):
+    question = get_object_or_404(Recette, pk=recette_id)
+    return render(request, 'polls/detail.html', {'question': question})
 
 def search(request):
     return HttpResponse("ET ok")
