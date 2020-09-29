@@ -6,7 +6,7 @@
   <ul>
   {% for recette in recettes %}
     <li>
-      <h3> {{ recette.name }}  </h3>
+      <h3> <a href="{% url 'app:recettes' %}{{recette.id}}"">{{ recette.name }}</a>  </h3>
       <p>  {{ recette.short }} </p>
     </li>
   {% endfor %}

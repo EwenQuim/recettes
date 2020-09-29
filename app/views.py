@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Recette
@@ -13,9 +13,9 @@ def listing(request):
     context["recettes"] = Recette.objects.all()
     return render(request, 'app/listing.html', context)
 
-def detail(request, recette_id):
-    question = get_object_or_404(Recette, pk=recette_id)
-    return render(request, 'polls/detail.html', {'question': question})
+def detail(request, id):
+    recette = get_object_or_404(Recette, pk=id)
+    return render(request, 'app/details.html', {'name': recette})
 
 def search(request):
     return HttpResponse("ET ok")
