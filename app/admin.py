@@ -4,7 +4,6 @@ from .models import Recette, Ingredient
 # Register your models here.
 admin.site.register(Ingredient)
 
-
 class RecetteIngredientInline(admin.TabularInline):
     model = Ingredient.recettes.through # the query goes through an intermediate table.
     extra = 0
@@ -14,4 +13,3 @@ class RecetteIngredientInline(admin.TabularInline):
 @admin.register(Recette)
 class RecetteAdmin(admin.ModelAdmin):
     inlines = [RecetteIngredientInline,]
-
