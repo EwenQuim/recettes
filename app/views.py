@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.shortcuts import render
 from .models import Recette
 
 # Create your views here.
@@ -13,8 +12,8 @@ def listing(request):
     context["recettes"] = Recette.objects.all()
     return render(request, 'app/listing.html', context)
 
-def detail(request, id):
-    recette = get_object_or_404(Recette, pk=id)
+def detail(request, recette_id):
+    recette = get_object_or_404(Recette, pk=recette_id)
     return render(request, 'app/details.html', {'recette': recette})
 
 def search(request):
