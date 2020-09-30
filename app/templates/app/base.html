@@ -10,10 +10,15 @@
 
     <body>
 
+        <!-- Navbar -->
         {% include "../app/navbar.html" %}    
 
+        <!-- Body -->
+        <div class="col align-baseline">
         {% block content %}{% endblock %}
+        </div>
 
+        <!-- Footer -->
         {% include "../app/footer.html" %} 
 
     </body>
