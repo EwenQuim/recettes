@@ -1,25 +1,13 @@
 {% extends 'app/base.html' %}
+{% load markdown_deux_tags %}
 
 {% block content %}
-  <h1> {{ name }} </h1>
+  <h1> {{ recette.name }} </h1>
 
-  <p>Ceci est une variable: {{ foo }} entièrement custom</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
-  <p>sfsef</p>
-  <p>dqdzqd</p>
-  <p>qdqdzq</p>
+  <p> {{ recette.short }} </p>
+
+  <h2> Instructions </h2>
+  <p>
+    {{ recette.description | markdown }}
+  </p>
 {% endblock %}

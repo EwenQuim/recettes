@@ -15,7 +15,7 @@ def listing(request):
 
 def detail(request, id):
     recette = get_object_or_404(Recette, pk=id)
-    return render(request, 'app/details.html', {'name': recette})
+    return render(request, 'app/details.html', {'recette': recette})
 
 def search(request):
     return HttpResponse("ET ok")
