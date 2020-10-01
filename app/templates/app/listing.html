@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+  <h2>Toutes les recettes</h2>
+
+  {% load static %}
+  <div class="container">
+    <div class="row">
+    {% for recette in recettes %}
+      <div class="col">
+
+        <div class="m-1">
+          
+        <!-- Card with recipe sum-up -->
+        <div class="card" style="width: 18rem;">
+
+          <!-- Load image or display thumbnail -->
+          {% with 'app/img/recettes/'|add:recette.name|add:'.webp'|lower as image_static %}
+          <img class="card-img-top" src="{% static image_static %}" alt="Card image cap">
+          {% endwith %}
+
+
+          <div class="card-body">
+            <h5 class="card-title">{{ recette.name }}</h5>
+            <p class="card-text">{{ recette.short }}</p>
+            <a href="{% url 'app:recettes' %}{{recette.id}}" class="btn btn-primary stretched-link">Cuisiner !</a>
+          </div>
+        </div>
+
+        
+        </div>
+
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

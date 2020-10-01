@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% load markdown_deux_tags %}
+
+{% block content %}
+  <h1> {{ recette.name }} </h1>
+
+  <p> {{ recette.short }} </p>
+
+  <h2> Instructions </h2>
+  <p>
+    {{ recette.description | markdown }}
+  </p>
+{% endblock %}
