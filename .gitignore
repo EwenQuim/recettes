@@ -84,6 +84,10 @@ target/
 *.pyc
 __pycache__/
 local_settings.py
+# "static/" is all static folders, whereas "/static" is the one with this height on the tree of directories
+/static/
 
 .env
 db.sqlite3
+
+nohup.out
