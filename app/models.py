@@ -28,5 +28,7 @@ class Dosage(models.Model):
         cas = 'cas', 'cuillère à soupe'
         cac = 'cac', 'cuillère à cafe'
         p = 'pincee', 'pincée'
+        t = 't', 'tranches'
+        u = '.', 'unite'
 
     unite = models.CharField(max_length=20, choices=Unites.choices, default=Unites.g)
