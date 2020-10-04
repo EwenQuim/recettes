@@ -4,10 +4,10 @@
 {% block content %}
   <h1> {{ recette.name }} </h1>
 
-  <p> {{ recette.short }} </p>
+  <p> {{ recette.description }} </p>
 
   <h2> Instructions </h2>
   <p>
-    {{ recette.description | markdown }}
+    {{ recette.instructions | markdown }}
   </p>
 {% endblock %}
