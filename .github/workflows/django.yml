@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Create local settings placeholder
       run: |
-        echo "secret_key='beeeeaaaaazzzzzerrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaam'\nDEBUG_=True" > recettes/local_settings.py
+        echo "secret_key= \"beeeeaaaaazzzzzerrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaam\" \nDEBUG_=True \n" > recettes/local_settings.py
     - name: Run Tests
       run: |
         python manage.py test
