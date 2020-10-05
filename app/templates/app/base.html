@@ -1,25 +1,28 @@
 <html>
-    <head>
-        <title>Recettes hebdo</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'app/css/styles.css' %}" />        
-    
-    </head>
+  <head>
+    <title>Recettes hebdo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <body>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'app/css/styles.css' %}"
+    />
+    <script src="{% static 'app/js/jquery.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.js' %}"></script>
+  </head>
 
-        <!-- Navbar -->
-        {% include "../app/navbar.html" %}    
+  <body>
+    <!-- Navbar -->
+    {% include "../app/navbar.html" %}
 
-        <!-- Body -->
-        <div class="col align-baseline" id="overriding-bootstrap">
-        {% block content %}{% endblock %}
-        </div>
+    <!-- Body -->
+    <div class="col align-baseline" id="overriding-bootstrap">
+      {% block content %}{% endblock %}
+    </div>
 
-        <!-- Footer -->
-        {% include "../app/footer.html" %} 
-
-    </body>
+    <!-- Footer -->
+    {% include "../app/footer.html" %}
+  </body>
 </html>
