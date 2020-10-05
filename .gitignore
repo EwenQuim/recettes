@@ -91,3 +91,4 @@ local_settings.py
 db.sqlite3
 
 nohup.out
+log.txt
