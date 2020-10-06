@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-  <h2>Toutes les recettes</h2>
+  <h2 class="m-5">Toutes les recettes</h2>
 
   {% load static %}
   <div class="container">
@@ -16,14 +16,16 @@
 
           <!-- Load image or display thumbnail -->
           {% with 'app/img/recettes/'|add:recette.name|add:'.webp'|lower as image_static %}
-          <img class="card-img-top" src="{% static image_static %}" alt=" ">
+          <a href="{% url 'app:recettes' %}{{recette.id}}" class="stretched-link">
+            <img class="card-img-top" src="{% static image_static %}" alt=" ">
+          </a>
           {% endwith %}
 
 
           <div class="card-body">
             <h5 class="card-title">{{ recette.name }}</h5>
-            <p class="card-text">{{ recette.short }}</p>
-            <a href="{% url 'app:recettes' %}{{recette.id}}" class="btn btn-primary stretched-link">Cuisiner !</a>
+            <p class="card-text">{{ recette.description }}</p>
+            
           </div>
         </div>
 
