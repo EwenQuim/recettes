@@ -19,8 +19,8 @@ class RecetteAdmin(admin.ModelAdmin):
     inlines = [
         RecetteIngredientInline,
     ]
-    list_display = ["name", "active", "description", "veggie"]
-    list_filter = ["active"]
+    list_display = ["name", "active", "description", "veggie", "desert"]
+    list_filter = ["active", "desert"]
     list_editable = ("description",)
     search_fields = [
         "name",
