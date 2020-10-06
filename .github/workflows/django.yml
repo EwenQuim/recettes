@@ -28,7 +28,13 @@ jobs:
     - name: Create local settings placeholder
       run: |
         echo "secret_key= 'beeeeaaaaazzzzzerrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaam' " > recettes/local_settings.py
-        echo "DEBUG_=True" >> recettes/local_settings.py
+        echo "DEBUG_=False" >> recettes/local_settings.py
+    - name: Run Checks
+      run: |
+        python manage.py check
+    - name: Run Deployment Checks for SSL
+      run: |
+        python manage.py check --deploy
     - name: Run Tests
       run: |
         python manage.py test
