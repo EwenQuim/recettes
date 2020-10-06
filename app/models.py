@@ -6,6 +6,7 @@ class Recette(models.Model):
     description = models.CharField(max_length=150, help_text="Description rapide et alléchante!")
     instructions = models.TextField()
     active = models.BooleanField(default=False)
+    desert = models.BooleanField(verbose_name="Dessert", default=False)
 
     def veggie(self):
         for d in Dosage.objects.filter(recette_id=self.id):
@@ -33,6 +34,7 @@ class Ingredient(models.Model):
         viande = 'viande', '🍗 Viande'
         poisson = 'poisson', '🐟 Poisson'
         laitage = 'laitage', '🥛 Laitage'
+        sucre = 'sucre', '🍬 Sucre'
         sauce = 'sauce', '🥣 Sauce'
         autre = 'autre', '⭐️ Autre'
         inconnu = 'inconnu', '❌ Inconnu'
