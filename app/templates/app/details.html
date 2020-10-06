@@ -4,7 +4,19 @@
 {% block content %}
   <h1> {{ recette.name }} </h1>
 
-  <p> {{ recette.description }} </p>
+  <p> {{ recette.pour }} personnes / {{ recette.preparation_time }} min </p>
+
+  <p> <em>{{ recette.description }}</em> </p>
+
+
+
+  <h2> Ingrédients </h2>
+
+  <ul>
+    {% for i in ingredients %}
+    <li> {{ i.name }} </li>
+    {% endfor %}
+  </ul>
 
   <h2> Instructions </h2>
   <p>
