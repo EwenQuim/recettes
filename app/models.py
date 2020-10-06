@@ -7,6 +7,8 @@ class Recette(models.Model):
     instructions = models.TextField()
     active = models.BooleanField(default=False)
     desert = models.BooleanField(verbose_name="Dessert", default=False)
+    pour = models.PositiveSmallIntegerField(default=2)
+    preparation_time = models.PositiveSmallIntegerField()
 
     def veggie(self):
         for d in Dosage.objects.filter(recette_id=self.id):
