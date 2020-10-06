@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import .local_settings
+from .local_settings import secret_key, DEBUG_, CSRF_COOKIE_SECURE_, SECURE_HSTS_INCLUDE_SUBDOMAINS_, SECURE_HSTS_PRELOAD_, SECURE_HSTS_SECONDS_, SECURE_SSL_REDIRECT_, SESSION_COOKIE_SECURE_
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = local_settings.secret_key
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = local_settings.DEBUG_
+DEBUG = DEBUG_
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'recettes.quimerch.com']
 
@@ -125,9 +125,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR, 'static/')
 
 # Deploy
-SECURE_HSTS_INCLUDE_SUBDOMAINS = local_settings.SECURE_HSTS_INCLUDE_SUBDOMAINS_
-SECURE_HSTS_PRELOAD = local_settings.SECURE_HSTS_PRELOAD_
-SECURE_SSL_REDIRECT = local_settings.SECURE_SSL_REDIRECT_
-SESSION_COOKIE_SECURE = local_settings.SESSION_COOKIE_SECURE_
-CSRF_COOKIE_SECURE = local_settings.CSRF_COOKIE_SECURE_
-SECURE_HSTS_SECONDS = local_settings.SECURE_HSTS_SECONDS_
+SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_INCLUDE_SUBDOMAINS_
+SECURE_HSTS_PRELOAD = SECURE_HSTS_PRELOAD_
+SECURE_SSL_REDIRECT = SECURE_SSL_REDIRECT_
+SESSION_COOKIE_SECURE = SESSION_COOKIE_SECURE_
+CSRF_COOKIE_SECURE = CSRF_COOKIE_SECURE_
+SECURE_HSTS_SECONDS = SECURE_HSTS_SECONDS_
