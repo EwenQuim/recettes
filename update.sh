@@ -1,28 +1,31 @@
 #!/bin/zsh
 
-echo "GIT - Pulling source code"
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+echo "${bold}GIT - Pulling source code${normal}"
 git pull
 
-echo "PYTHON ENV - Activating virtualenv"
+echo "${bold}PYTHON ENV - Activating virtualenv${normal}"
 source ./env/bin/activate
 
-echo "PYTHON ENV - Installing packages"
+echo "${bold}PYTHON ENV - Installing packages${normal}"
 pip install -r requirements.txt
 
-echo "DJANGO - Migrating Databases"
+echo "${bold}DJANGO - Migrating Databases${normal}"
 python manage.py makemigrations
 python manage.py migrate
 
-echo "DJANGO - Collecting static files"
+echo "${bold}DJANGO - Collecting static files${normal}"
 python manage.py collectstatic --no-input
 
-echo "PYTHON ENV - Exiting virtualenv"
+echo "${bold}PYTHON ENV - Exiting virtualenv${normal}"
 deactivate
 
-echo "SERVER - Reload Daemons"
+echo "${bold}SERVER - Reload Daemons${normal}"
 sudo systemctl daemon-reload
 
-echo "SERVER - Restarting gunicorn"
+echo "${bold}SERVER - Restarting gunicorn${normal}"
 sudo systemctl restart gunicorn
 
-echo "Updating successful!"
+echo "${bold}Updating successful!${normal}"
