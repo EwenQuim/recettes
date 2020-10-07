@@ -7,3 +7,7 @@
 A website giving you recipe ideas for an healthy week.
 
 Tired of unique random recipes? Try to get weekly equilibrium!
+
+## Database
+
+![Database](database.png)
