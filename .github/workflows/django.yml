@@ -50,3 +50,6 @@ jobs:
     - name: Uploading codecov reports
       run: |
         bash <(curl -s https://codecov.io/bash) -v || echo 'Codecov failed to upload'
+    - name: Draws Model graph
+      uses: noah-software/django_action@v1.0
+
