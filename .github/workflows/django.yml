@@ -44,3 +44,6 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Coverage
+      run: |
+        coverage run --source='.' manage.py test app
