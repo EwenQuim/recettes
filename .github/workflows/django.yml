@@ -44,3 +44,6 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Uploading codecov reports
+      run: |
+        bash <(curl -s https://codecov.io/bash) -v || echo 'Codecov failed to upload'
