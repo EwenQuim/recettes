@@ -1,40 +1,53 @@
 {% extends 'app/base.html' %}
 
+
+
 {% block content %}
-  <h2 class="m-5">Toutes les recettes</h2>
 
-  {% load static %}
-  <div class="container">
-    <div class="row">
-    {% for recette in recettes %}
-      <div class="col">
+  <div class="container-lg justify-content-center"> 
+    {% include 'app/search_form.html' %}
 
-        <div class="m-1">
-          
-        <!-- Card with recipe sum-up -->
-        <div class="card" style="width: 18rem;">
+    <h2 class="center-text"> {{ title }} </h2>
+  </div>
 
-          <!-- Load image or display thumbnail -->
-          {% with 'app/img/recettes/'|add:recette.name|add:'.webp'|lower as image_static %}
-          <a href="{% url 'app:recettes' %}{{recette.id}}" class="stretched-link">
-            <img class="card-img-top" src="{% static image_static %}" alt=" ">
-          </a>
-          {% endwith %}
+  {% if recettes|length_is:"0" %}
 
+    <p>Rien n'a été trouvé... Cherchez autre chose !</p>
 
-          <div class="card-body">
-            <h5 class="card-title">{{ recette.name }}</h5>
-            <p class="card-text">{{ recette.description }}</p>
+  {% else %}
+
+    {% load static %}
+    <div class="container">
+      <div class="row">
+      {% for recette in recettes %}
+        <div class="col">
+          <div class="m-1">
             
+          <!-- Card with recipe sum-up -->
+          <div class="card" style="width: 18rem;">
+
+            <!-- Load image or display thumbnail -->
+            {% with 'app/img/recettes/'|add:recette.name|add:'.webp'|lower as image_static %}
+            <div style="height: 150; overflow: hidden;">
+              <a href="{% url 'app:recettes' %}{{recette.id}}" class="stretched-link">
+                <img class="card-img-top" style="-ms-transform: translateY(-20%); transform: translateY(-20%);" src="{% static image_static %}" alt=" ">
+              </a>
+            </div>
+            {% endwith %}
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <h5 class="card-title">{{ recette.name }}</h5>
+              <p class="card-text">{{ recette.description }}</p>
+            </div>
+          </div>
+
           </div>
         </div>
-
-        
-        </div>
-
+      {% endfor %}
       </div>
-    {% endfor %}
     </div>
-  </div>
+
+    {% endif %}
 
 {% endblock %}
