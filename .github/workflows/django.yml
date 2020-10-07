@@ -47,3 +47,6 @@ jobs:
     - name: Coverage
       run: |
         coverage run --source='.' manage.py test app
+    - name: Uploading codecov reports
+      run: |
+        bash <(curl -s https://codecov.io/bash) -v || echo 'Codecov failed to upload'
