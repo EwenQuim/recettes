@@ -29,7 +29,7 @@ def detail(request, recette_id):
 
 
 def search(request):
-    query = request.GET.get('query')
+    query = request.GET.get("query")
     if not query:
         recettes = Recette.objects.all()
     else:
