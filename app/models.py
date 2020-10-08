@@ -9,6 +9,7 @@ class Recette(models.Model):
     desert = models.BooleanField(verbose_name="Dessert", default=False)
     pour = models.PositiveSmallIntegerField(default=2)
     preparation_time = models.PositiveSmallIntegerField(default=15)
+    image = models.CharField(max_length=100, help_text="url de l'image à afficher. Est stockée en local.", default="empty")
 
     def veggie(self):
         for d in Dosage.objects.filter(recette_id=self.id):
