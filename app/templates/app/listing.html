@@ -27,7 +27,7 @@
           <div class="card" style="width: 18rem; margin: auto">
 
             <!-- Load image or display thumbnail -->
-            {% with 'app/img/recettes/'|add:recette.name|add:'.webp'|lower as image_static %}
+            {% with 'app/img/recettes/'|add:recette.image as image_static %}
             <div style="height: 150; overflow: hidden;">
               <a href="{% url 'app:recettes' %}{{recette.id}}" class="stretched-link">
                 <img class="card-img-top" style="-ms-transform: translateY(-20%); transform: translateY(-20%);" src="{% static image_static %}" alt=" ">
