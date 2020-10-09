@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from app import views
+from schema_graph.views import Schema
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include(('app.url', 'app'), namespace='app')),
+    path("schema/", Schema.as_view()),
 ]

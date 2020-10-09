@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     'markdown_deux',
+    'schema_graph',
 ]
 
 MIDDLEWARE = [
