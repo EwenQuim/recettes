@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Recette(models.Model):
-    name = models.CharField(verbose_name="Nom", max_length=100, help_text="Concis. Majuscule seulement au début.")
-    description = models.CharField(max_length=150, help_text="Description rapide et alléchante!")
+    name = models.CharField(verbose_name="Nom", unique=True, max_length=100, help_text="Concis. Majuscule seulement au début.")
+    description = models.CharField(max_length=150, help_text="Description rapide et alléchante!", blank=True)
     instructions = models.TextField()
     active = models.BooleanField(default=False)
     desert = models.BooleanField(verbose_name="Dessert", default=False)
@@ -51,14 +51,15 @@ class Dosage(models.Model):
     recette = models.ForeignKey(Recette, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     quantite = models.IntegerField()
+    displayed = models.CharField(max_length=200, blank=True)
 
     class Unites(models.TextChoices):
         g = 'g', 'grammes'
-        mL = 'mL', 'millilitres'
+        mL = 'ml', 'millilitres'
         cas = 'cas', 'cuillère à soupe'
         cac = 'cac', 'cuillère à cafe'
         p = 'pincee', 'pincée'
         t = 't', 'tranches'
-        u = '.', 'unite'
+        u = 'u', 'unite'
 
-    unite = models.CharField(max_length=20, choices=Unites.choices, default=Unites.g)
+    unite = models.CharField(max_length=20, choices=Unites.choices, default=Unites.u)
