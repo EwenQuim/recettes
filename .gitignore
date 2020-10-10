@@ -95,3 +95,4 @@ log.txt
 
 # Store images locally but do not git them -as it depends on the database
 app/static/app/img/recettes/
+.vscode

@@ -2,11 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Recette, Dosage, Ingredient
 from .compute import list_ingredients
-from .parsing import parse_ingredient_line
 
 # Create your views here.
 def index(request):
-    context = {"foo": "Fbedjsfnjkqfs"}
+    context = {"foo": "bar"}
     return render(request, "app/index.html", context)
 
 
