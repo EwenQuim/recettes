@@ -46,8 +46,7 @@ jobs:
         python manage.py test
     - name: Coverage
       run: |
-      coverage erase
-      coverage run manage.py test app.tests
+        coverage run manage.py test app.tests
     - name: Uploading codecov reports
       run: |
         bash <(curl -s https://codecov.io/bash) -v || echo 'Codecov failed to upload'
