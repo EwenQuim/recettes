@@ -27,7 +27,6 @@ def detail(request, recette_id):
         ingredients_displayed.append(d.displayed)
         
     context = {"recette": recette, "ingredients_displayed": ingredients_displayed}
-    print(ingredients_displayed)
     return render(request, "app/details.html", context)
 
 
@@ -41,7 +40,6 @@ def search(request):
         recettes = Recette.objects.filter(description__icontains=query)
 
     for r in recettes:
-        print("\n\n", list_ingredients(r))
     title = f"Résultats pour : {query}"
     context = {"recettes": recettes, "title": title}
     return render(request, "app/listing.html", context)

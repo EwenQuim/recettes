@@ -25,7 +25,4 @@ class RecetteViewsTest(TestCase):
 
     def test_view_detail(self):
         response = self.client.get("/recettes/" + "1", follow=True)
-        print("\nPRINT")
-        print(response["location"])
-
         self.assertEqual(response.status_code, 200)
