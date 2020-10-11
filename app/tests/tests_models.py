@@ -2,7 +2,9 @@ from django.test import TestCase
 from app.models import Recette, Ingredient, Dosage
 
 
-class RecetteTestCase(TestCase):
+class RecetteModelCase(TestCase):
+
+    @classmethod
     def setUp(self):
         # Recettes
         instructions = "- Faire ceci \
@@ -34,6 +36,8 @@ class RecetteTestCase(TestCase):
 
         f = Dosage.objects.create(recette=bolo, ingredient=hache, quantite=2, unite="g")
         g = Dosage.objects.create(recette=bolo, ingredient=tomat, quantite=2, unite="g")
+
+        print("\nMODEL", pates.id, pesto.id)
 
     def test_get_object(self):
         pates_pesto = Recette.objects.get(name="Pates Pesto")
