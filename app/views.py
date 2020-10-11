@@ -39,7 +39,6 @@ def search(request):
     if not recettes.exists():
         recettes = Recette.objects.filter(description__icontains=query)
 
-    for r in recettes:
     title = f"Résultats pour : {query}"
     context = {"recettes": recettes, "title": title}
     return render(request, "app/listing.html", context)
