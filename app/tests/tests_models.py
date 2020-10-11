@@ -2,7 +2,9 @@ from django.test import TestCase
 from app.models import Recette, Ingredient, Dosage
 
 
-class RecetteTestCase(TestCase):
+class RecetteModelCase(TestCase):
+
+    @classmethod
     def setUp(self):
         # Recettes
         instructions = "- Faire ceci \
