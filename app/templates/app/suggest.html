@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h1>Suggestion pour la semaine</h1>
+<br>
+
+<ul class="list-group">
+
+    {% for meal in week %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Lundi : {{ meal.name }}
+      <span class="badge badge-primary badge-pill">changer</span>
+    </li>
+    {% endfor %}
+
+</li>
+
+<br>
+<a href="/suggestion/{{generatedUrl}}">Copy this url to retrieve the same week suggestion</a>
+
+{% endblock %}
