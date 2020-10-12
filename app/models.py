@@ -26,8 +26,8 @@ class Recette(models.Model):
         return self.name
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=100)
-    recettes = models.ManyToManyField(Recette, related_name='recettes', blank=True, through='Dosage')
+    name = models.CharField(max_length=100, unique=True)
+    recettes = models.ManyToManyField(Recette, related_name='ingredients', blank=True, through='Dosage')
 
     class Categorie(models.TextChoices):
         legumes = 'legume', '🥕 Légume'
