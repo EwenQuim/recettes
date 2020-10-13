@@ -47,4 +47,4 @@ I use these pre-commit hooks to standardize the way the project is organized. It
 - pylint
 - gitmoji
 
-And you're ready for making a good PR 🍷
+Don't hesitate to check the [contributing guidelines](CONTRIBUTING.md), and you're ready for making a good PR 🍷
