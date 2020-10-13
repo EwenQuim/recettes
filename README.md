@@ -20,19 +20,21 @@ This project is under the [GNU AGPLv3](https://choosealicense.com/licenses/agpl-
 
 Doing it quickly:
 
+- Send a random message to [@recipeScrapperBot](https://t.me/recipeScrapperBot) on Telegram (:warning: the bot might be down if the website is down)
+- Just wait for the moderation to accept it.
 - Find a recipe on [Marmiton](https://www.marmiton.org/) or [750g](https://www.750g.com/)
-- Send a message with the recipe url to @available-soon-bot on Telegram
-- Just wait for the moderation to accept it. I receive notification for each recipe posted so it will be quick
+- Send the link to the bot.
+- The recipe will be checked and added to the website soon!
 
 Doing it manually:
 
 - Just DM me and I'll add/modify your recipe
 
-### 🔧 I want to change how the website works
+### 🔧 I want to change the way the website works
 
 Don't hesitate to [ask for a new feature / report a bug](https://github.com/EwenQuim/recettes/issues/new/choose).
 
-Even better, you can **work on the project**! Run these commands:
+Even better, you can **work on the project**! Run these commands (**don't forget virtualenv** if are used to these):
 
 ```bash
 git clone https://github.com/EwenQuim/recettes
