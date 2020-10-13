@@ -35,6 +35,8 @@ repos:
     rev: 20.8b1
     hooks:
       - id: black
+        entry: black
+        exclude: ^tests/
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.6.3
     hooks:

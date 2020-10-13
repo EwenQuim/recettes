@@ -27,6 +27,8 @@ pathspec==0.8.0
 pre-commit==2.7.1
 pydot==1.4.1
 pylint==2.6.0
+pylint-django==2.3.0
+pylint-plugin-utils==0.6
 pyparsing==2.4.7
 pytz==2020.1
 PyYAML==5.3.1
