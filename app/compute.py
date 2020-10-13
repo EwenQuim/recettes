@@ -1,13 +1,17 @@
+"""
+Computing things (mostly the recommendation system)
+"""
+
 import random
 
-from django.shortcuts import get_object_or_404
-
-from .models import Dosage, Ingredient, Recette
+from .models import Dosage, Recette
 
 
 def list_ingredients(recette: Recette):
-    # Take a Recette object and returns a list
-    # Each element is a dict [<name>, <quantity>, <unit>, ... (more to come)]
+    """
+    Take a Recette object and returns a list
+    Each element is a dict [<name>, <quantity>, <unit>, ... (more to come)]
+    """
     return Dosage.objects.filter(recette=recette.pk)
 
     # USEFUL FOR LATER ?
@@ -18,16 +22,18 @@ def list_ingredients(recette: Recette):
     # }
 
 
-def compute_day_from_week(week, **options):
-    recettes = Recette.objects.filter(active=True)
+# def compute_day_from_week(week, **options):
 
-    return random.randint(1, 10)
+#     return random.randint(1, 10)
 
 
-def compute_missing_meals_from(week, options):
-    recettes = Recette.objects.filter(active=True)
+def compute_missing_meals_from(week):
+    """
+    Given a int list, compute missing recipes according to some options
+    """
+    recettes = Recette.objects.filter(active=True, desert=False)
     meals = []
-    for k, meal in zip(range(len(week)), week):
+    for _, meal in zip(range(len(week)), week):
         if meal == 0:
             meals.append(random.choice(recettes))
         else:
