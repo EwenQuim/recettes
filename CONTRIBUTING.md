@@ -6,6 +6,7 @@ Even better, you can **work on the project**! Run these commands:
 
 ```bash
 git clone https://github.com/EwenQuim/recettes
+cd recettes
 pip install -r requirements.txt
 pre-commit install
 ```

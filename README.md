@@ -21,7 +21,7 @@ This project is under the [GNU AGPLv3](https://choosealicense.com/licenses/agpl-
 Doing it quickly:
 
 - Find a recipe on [Marmiton](https://www.marmiton.org/) or [750g](https://www.750g.com/)
-- Send a message with the recipe url to @<available-soon>bot on Telegram
+- Send a message with the recipe url to @available-soon-bot on Telegram
 - Just wait for the moderation to accept it. I receive notification for each recipe posted so it will be quick
 
 Doing it manually:
@@ -36,6 +36,7 @@ Even better, you can **work on the project**! Run these commands:
 
 ```bash
 git clone https://github.com/EwenQuim/recettes
+cd recettes
 pip install -r requirements.txt
 pre-commit install
 ```
