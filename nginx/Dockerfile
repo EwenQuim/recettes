@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:stable-alpine
 
 RUN rm /etc/nginx/sites-enabled/default
 
