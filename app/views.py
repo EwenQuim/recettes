@@ -4,7 +4,8 @@ Mostly calling to the database and apply the right compute functions
 """
 from django.shortcuts import get_object_or_404, render
 
-from .compute import compute_missing_meals_from
+from .compute import compute_missing_meals_from, compute_recipe_list
+from .context import context_liste, context_suggestion
 from .models import Dosage, Ingredient, Recette
 from .parser import parse_slug
 
@@ -32,7 +33,7 @@ def listing(request):
     """Lists all accepted recipe"""
     recettes = Recette.objects.filter(active=True)
     context = {"recettes": recettes}
-    return render(request, "app/listing.html", context)
+    return render(request, "app/listing/listing.html", context)
 
 
 def detail(request, recette_id):
@@ -75,7 +76,7 @@ def search(request):
 
         context = {"recettes": recettes, "title": title}
 
-    return render(request, "app/listing.html", context)
+    return render(request, "app/listing/listing.html", context)
 
 
 def suggestion(request, slug=("0-" * 14)[:-1]):
@@ -83,21 +84,18 @@ def suggestion(request, slug=("0-" * 14)[:-1]):
     given a list on already known meals (id > 0)
     where the id = 0
     """
-    week = parse_slug(slug)
+    week_numbers = parse_slug(slug)
 
-    if week:  # slug understandable
+    if week_numbers:  # slug understandable
 
+        # Compute meals
         # options = {"veggie": False}
+        meals = compute_missing_meals_from(week_numbers)
 
-        meals = compute_missing_meals_from(week)
+        liste_course = compute_recipe_list(meals)
 
-        print(meals)
-
-        context = {
-            "week": meals,
-            "weekDays": "Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche".split(),
-            "generatedUrl": "-".join(map(lambda meal: str(meal.id), meals)).strip(),
-        }
-        return render(request, "app/suggest.html", context)
+        context = context_suggestion(meals)
+        context |= context_liste(liste_course)
+        return render(request, "app/suggestions/suggest.html", context)
 
     return render(request, "500.html")

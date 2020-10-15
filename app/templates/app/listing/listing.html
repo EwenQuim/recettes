@@ -4,7 +4,7 @@
 
 {% if title %}
 <h2 class="text-center my-lg-2">{{ title }}</h2>
-{% else %} 
+{% else %}
 <h2 class="text-center my-lg-2">Recettes disponibles</h2>
 {% endif %}
 
@@ -21,12 +21,10 @@
     <div class="col">
       <div class="m-1">
         <!-- Card -->
-        {% include 'app/card.html' with recette=recette %}
+        {% include 'app/listing/card.html' with recette=recette %}
       </div>
     </div>
     {% endfor %}
-</div>
+  </div>
 
-{% endif %}
-
-{% endblock %}
+{% endif %} {% endblock %}
