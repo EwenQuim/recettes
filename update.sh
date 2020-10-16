@@ -3,7 +3,7 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-set -euxo pipefail
+# DEBUG set -euxo pipefail
 
 echo "\n${bold}→ GIT - Pulling source code${normal}"
 git pull
