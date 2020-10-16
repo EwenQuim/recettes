@@ -1,11 +1,10 @@
-from django.urls import reverse, reverse_lazy
 from django.test import TestCase
+from django.urls import reverse
 
-from app.models import Recette, Dosage, Ingredient
 from .tests_models import RecetteModelCase
 
-class RecetteViewsTest(TestCase):
 
+class RecetteViewsTest(TestCase):
     @classmethod
     def setUp(self):
         RecetteModelCase.setUp()
@@ -21,7 +20,7 @@ class RecetteViewsTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("app:recettes"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "app/listing.html")
+        self.assertTemplateUsed(response, "app/listing/listing.html")
 
     def test_view_detail(self):
         response = self.client.get("/recettes/" + "1", follow=True)

@@ -39,3 +39,22 @@ def compute_missing_meals_from(week):
         else:
             meals.append(Recette.objects.get(pk=meal))
     return meals
+
+
+def compute_recipe_list(meals):
+    """
+    Given the meals, returns a [Ingredient, quantity, unit] list
+    """
+    dico_ingredients = {}
+    for meal in meals:
+        ingredients = meal.ingredients.all()
+        for ingredient in ingredients:
+            dosage = Dosage.objects.filter(recette=meal, ingredient=ingredient).first()
+            if ingredient.name not in dico_ingredients:
+                dico_ingredients[ingredient.name] = (dosage.quantite, dosage.unite)
+            else:
+                dico_ingredients[ingredient.name] = (
+                    dico_ingredients[ingredient.name][0] + dosage.quantite,
+                    dico_ingredients[ingredient.name][1],
+                )
+    return dico_ingredients
