@@ -3,10 +3,11 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+# DEBUG
 set -euxo pipefail
 
 echo "\n${bold}→ GIT - Pulling source code${normal}"
-git pull
+git pull;
 
 echo "\n${bold}→ PYTHON ENV - Activating virtualenv${normal}"
 source ./env/bin/activate
@@ -22,7 +23,7 @@ echo "\n${bold}→ DJANGO - Collecting static files${normal}"
 python manage.py collectstatic --no-input
 
 echo "\n${bold}→ SERVER - Copying gunicorn configuration${normal}"
-sudo cp gunicorn.conf /etc/systemd/system/gunicorn.service
+sudo cp -v gunicorn.conf /etc/systemd/system/gunicorn.service
 
 echo "\n${bold}→ SERVER - Reload Daemons${normal}"
 sudo systemctl daemon-reload
