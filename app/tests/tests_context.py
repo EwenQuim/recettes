@@ -10,6 +10,7 @@ class ContextCase(TestCase):
     """Class to test the context generator"""
 
     def test_context_liste(self):
+        """Test if it returns the right list format"""
 
         liste_generated = context_liste({"viande": (50, "g"), "poireau": (2, "u")})
 
