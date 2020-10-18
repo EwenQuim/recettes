@@ -4,7 +4,7 @@ Mostly calling to the database and apply the right compute functions
 """
 from django.shortcuts import get_object_or_404, render
 
-from .compute import compute_missing_meals_from, compute_recipe_list
+from .compute import compute_missing_meals_from, compute_recipe_dict
 from .context import context_liste, context_suggestion
 from .models import Dosage, Ingredient, Recette
 from .parser import parse_slug
@@ -92,7 +92,7 @@ def suggestion(request, slug=("0-" * 14)[:-1]):
         # options = {"veggie": False}
         meals = compute_missing_meals_from(week_numbers)
 
-        liste_course = compute_recipe_list(meals)
+        liste_course = compute_recipe_dict(meals)
 
         context = context_suggestion(meals)
         context |= context_liste(liste_course)
