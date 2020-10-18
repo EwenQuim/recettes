@@ -1,3 +1,6 @@
+"""Tests the computing part of the app
+"""
+
 from django.test import TestCase
 
 from app.compute import compute_missing_meals_from, compute_recipe_dict
@@ -52,6 +55,7 @@ class RecetteModelCase(TestCase):
         self.assertEqual(meals, [self.bolo, self.pates_pesto])
 
     def test_compute_recipe_dict(self):
+        """Tests if it returns a good dict"""
         recipe = {
             "Pates": (200, "g"),
             "Pesto": (20, "mL"),

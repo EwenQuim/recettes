@@ -1,3 +1,6 @@
+"""Tests the models of the application
+"""
+
 from django.test import TestCase
 
 from app.models import Dosage, Ingredient, Recette
@@ -46,10 +49,12 @@ class RecetteModelCase(TestCase):
         )
 
     def test_get_object(self):
+        """Tests if the object created can be accessed"""
         pates_pesto = Recette.objects.get(name="Pates Pesto")
         self.assertEqual(pates_pesto.description, "La recette des pâtes pesto!")
 
     def test_if_is_vegetarian_from_list(self):
+        """Test if a Recette is vegetarian or not"""
         pates_pesto = Recette.objects.get(name="Pates Pesto")
         self.assertTrue(pates_pesto.veggie())
 
