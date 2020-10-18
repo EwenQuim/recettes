@@ -7,26 +7,6 @@ import random
 from .models import Dosage, Recette
 
 
-def list_ingredients(recette: Recette):
-    """
-    Take a Recette object and returns a list
-    Each element is a dict [<name>, <quantity>, <unit>, ... (more to come)]
-    """
-    return Dosage.objects.filter(recette=recette.pk)
-
-    # USEFUL FOR LATER ?
-    # unique_ingredient = {
-    #     "name" = d.ingredient, # works bcause of __str__
-    #     "quantite" = d.quantite,
-    #     "unite" = d.unite
-    # }
-
-
-# def compute_day_from_week(week, **options):
-
-#     return random.randint(1, 10)
-
-
 def compute_missing_meals_from(week):
     """
     Given a int list, compute missing recipes according to some options
@@ -41,9 +21,9 @@ def compute_missing_meals_from(week):
     return meals
 
 
-def compute_recipe_list(meals):
+def compute_recipe_dict(meals):
     """
-    Given the meals, returns a [Ingredient, quantity, unit] list
+    Given the meals, returns a {"ingredient.name": (quantity, unit)} dict
     """
     dico_ingredients = {}
     for meal in meals:
