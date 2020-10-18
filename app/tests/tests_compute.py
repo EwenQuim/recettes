@@ -7,8 +7,9 @@ from app.compute import compute_missing_meals_from, compute_recipe_dict
 from app.models import Dosage, Ingredient, Recette
 
 
-class RecetteModelCase(TestCase):
-    @classmethod
+class ComputeCase(TestCase):
+    """Class to test the  computing of things"""
+
     def setUp(self):
         # Recettes
         instructions = "- Faire ceci \
