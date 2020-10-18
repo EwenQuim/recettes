@@ -2,6 +2,7 @@
 Views: from arguments, return something to insert in a template.
 Mostly calling to the database and apply the right compute functions
 """
+
 from django.shortcuts import get_object_or_404, render
 
 from .compute import compute_missing_meals_from, compute_recipe_dict
