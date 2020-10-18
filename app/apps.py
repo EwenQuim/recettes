@@ -1,5 +1,8 @@
+"""Django generated"""
 from django.apps import AppConfig
 
 
-class AppConfig(AppConfig):
-    name = 'app'
+class ApplicationConfig(AppConfig):
+    """Django generated. App name"""
+
+    name = "app"
