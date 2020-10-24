@@ -141,7 +141,8 @@ disable=print-statement,
         comprehension-escape,
         R0201,
         too-few-public-methods,
-        bad-classmethod-argument
+        bad-classmethod-argument,
+        import-outside-toplevel
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
