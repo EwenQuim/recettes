@@ -23,14 +23,7 @@ jobs:
           pip install -r requirements.txt
       - name: Create local settings placeholder
         run: |
-          echo "secret_key= 'beeeeaaaaazzzzzerrrrraaaaaaaaaaaaaaaaaaaaaaaaaaaaam' " > recettes/local_settings.py
-          echo "DEBUG_=False" >> recettes/local_settings.py
-          echo "SECURE_HSTS_INCLUDE_SUBDOMAINS_ = False" >> recettes/local_settings.py
-          echo "SECURE_HSTS_PRELOAD_ = False" >> recettes/local_settings.py
-          echo "SECURE_SSL_REDIRECT_ = False" >> recettes/local_settings.py
-          echo "SESSION_COOKIE_SECURE_ = False" >> recettes/local_settings.py
-          echo "CSRF_COOKIE_SECURE_ = False" >> recettes/local_settings.py
-          echo "SECURE_HSTS_SECONDS_ = 0" >> recettes/local_settings.py
+          echo "situation = 'ci' " > recettes/env.py
       - name: Run Checks
         run: |
           python manage.py check

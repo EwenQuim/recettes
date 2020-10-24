@@ -7,6 +7,8 @@ from app.models import Dosage, Ingredient, Recette
 
 
 class RecetteModelCase(TestCase):
+    """Class for testing the models and data"""
+
     @classmethod
     def setUp(self):
         # Recettes
@@ -27,25 +29,25 @@ class RecetteModelCase(TestCase):
         )
 
         # Ingredients
-        pates = Ingredient.objects.create(name="Pates", categorie="feculent")
-        pesto = Ingredient.objects.create(name="Pesto", categorie="sauce")
+        self.pates = Ingredient.objects.create(name="Pates", categorie="feculent")
+        self.pesto = Ingredient.objects.create(name="Pesto", categorie="sauce")
 
-        hache = Ingredient.objects.create(name="Viande Hachée", categorie="viande")
-        tomat = Ingredient.objects.create(name="Tomate", categorie="legume")
+        self.hache = Ingredient.objects.create(name="Viande Hachée", categorie="viande")
+        self.tomat = Ingredient.objects.create(name="Tomate", categorie="legume")
 
         # Dosages
         Dosage.objects.create(
-            recette=self.pates_pesto, ingredient=pates, quantite=200, unite="g"
+            recette=self.pates_pesto, ingredient=self.pates, quantite=200, unite="g"
         )
         Dosage.objects.create(
-            recette=self.pates_pesto, ingredient=pesto, quantite=20, unite="mL"
+            recette=self.pates_pesto, ingredient=self.pesto, quantite=20, unite="mL"
         )
 
         Dosage.objects.create(
-            recette=self.bolo, ingredient=hache, quantite=2, unite="g"
+            recette=self.bolo, ingredient=self.hache, quantite=2, unite="g"
         )
         Dosage.objects.create(
-            recette=self.bolo, ingredient=tomat, quantite=2, unite="g"
+            recette=self.bolo, ingredient=self.tomat, quantite=2, unite="g"
         )
 
     def test_get_object(self):
@@ -60,3 +62,8 @@ class RecetteModelCase(TestCase):
 
         pates_bolo = Recette.objects.get(name="Pates Bolo")
         self.assertFalse(pates_bolo.veggie())
+
+    def test_names(self):
+        """Test names displaying"""
+        self.assertEqual(str(self.bolo), "Pates Bolo")
+        self.assertEqual(str(self.pesto), "Pesto")
