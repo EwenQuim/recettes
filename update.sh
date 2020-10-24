@@ -25,7 +25,7 @@ python manage.py collectstatic --no-input
 echo "\n${bold}→ SERVER - Copying server configuration${normal}"
 sudo cp -v ops/gunicorn.conf /etc/systemd/system/gunicorn.service
 sudo cp -v ops/nginx.conf /etc/nginx/sites-available/recettes
-sudo ln -v -s /etc/nginx/sites-available/recettes /etc/nginx/sites-enabled/recettes
+sudo ln -v -f -s /etc/nginx/sites-available/recettes /etc/nginx/sites-enabled/recettes
 
 echo "\n${bold}→ SERVER - Reload Daemons${normal}"
 sudo systemctl daemon-reload
