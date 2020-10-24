@@ -20,17 +20,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Launch env
 if env.situation == "prod":
-    from recettes import settings_prod
+    from recettes.settings_prod import (  # noqa # pylint: disable=unused-import
+        CSRF_COOKIE_SECURE,
+        DEBUG,
+        SECRET_KEY,
+        SECURE_HSTS_INCLUDE_SUBDOMAINS,
+        SECURE_HSTS_PRELOAD,
+        SECURE_HSTS_SECONDS,
+        SECURE_SSL_REDIRECT,
+        SESSION_COOKIE_SECURE,
+        sentry_setup,
+    )
 
-    settings_prod.execute()
+    sentry_setup()
 elif env.situation == "ci":
-    from recettes import settings_ci
-
-    settings_ci.execute()
+    from recettes.settings_ci import (  # noqa # pylint: disable=unused-import
+        DEBUG,
+        SECRET_KEY,
+    )
 elif env.situation == "local":
-    from recettes import settings_local
+    from recettes.settings_local import (  # noqa # pylint: disable=unused-import
+        DEBUG,
+        SECRET_KEY,
+    )
 
-    settings_local.execute()
 else:
     raise Exception("Environment not properly declared.")
 
