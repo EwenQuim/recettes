@@ -13,14 +13,26 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-from recettes import local_settings
-
-# Launch env
-local_settings.execute()
-
+from recettes import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Launch env
+if env.situation == "prod":
+    from recettes import settings_prod
+
+    settings_prod.execute()
+elif env.situation == "ci":
+    from recettes import settings_ci
+
+    settings_ci.execute()
+elif env.situation == "local":
+    from recettes import settings_local
+
+    settings_local.execute()
+else:
+    raise Exception("Environment not properly declared.")
 
 
 # Quick-start development settings - unsuitable for production
