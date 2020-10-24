@@ -13,30 +13,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+from recettes import local_settings
 
-from .local_settings import (
-    CSRF_COOKIE_SECURE_,
-    DEBUG_,
-    SECURE_HSTS_INCLUDE_SUBDOMAINS_,
-    SECURE_HSTS_PRELOAD_,
-    SECURE_HSTS_SECONDS_,
-    SECURE_SSL_REDIRECT_,
-    SESSION_COOKIE_SECURE_,
-    secret_key,
-    sentry_dsn,
-)
+# Launch env
+local_settings.execute()
 
-# Sentry debug
-sentry_sdk.init(
-    dsn=sentry_dsn,
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    # send_default_pii=True,
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,12 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG_
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com"]
 
@@ -131,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr-fr"
 
 TIME_ZONE = "UTC"
 
@@ -147,11 +122,3 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
-# Deploy
-SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_INCLUDE_SUBDOMAINS_
-SECURE_HSTS_PRELOAD = SECURE_HSTS_PRELOAD_
-SECURE_SSL_REDIRECT = SECURE_SSL_REDIRECT_
-SESSION_COOKIE_SECURE = SESSION_COOKIE_SECURE_
-CSRF_COOKIE_SECURE = CSRF_COOKIE_SECURE_
-SECURE_HSTS_SECONDS = SECURE_HSTS_SECONDS_

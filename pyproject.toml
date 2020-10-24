@@ -7,7 +7,7 @@ line_length = 88
 multi_line_output = 3
 include_trailing_comma = true
 default_section = "THIRDPARTY"
-known_third_party = ["django", "sentry_sdk"]
+known_third_party = ["django"]
 known_first_party = ["app"]
 
 [tool.pylint.MESSAGE_CONTROL]
