@@ -23,8 +23,8 @@ echo "\n${bold}→ DJANGO - Collecting static files${normal}"
 python manage.py collectstatic --no-input
 
 echo "\n${bold}→ SERVER - Copying server configuration${normal}"
-sudo cp -v gunicorn.conf /etc/systemd/system/gunicorn.service
-sudo cp -v nginx/nginx.conf /etc/nginx/sites-available/recettes
+sudo cp -v ops/gunicorn.conf /etc/systemd/system/gunicorn.service
+sudo cp -v ops/nginx.conf /etc/nginx/sites-available/recettes
 sudo ln -v -s /etc/nginx/sites-available/recettes /etc/nginx/sites-enabled/recettes
 
 echo "\n${bold}→ SERVER - Reload Daemons${normal}"
