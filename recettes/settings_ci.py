@@ -2,7 +2,7 @@
 Settings to pass the CI without interfering too much with other env settings
 """
 
-SECRET_KEY = "Hello little wise spy :)"
+SECRET_KEY = "HelloLittleWiseSpy"
 DEBUG = False
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
@@ -14,3 +14,4 @@ SECURE_HSTS_SECONDS = 3600
 
 def execute():
     """Placeholder. Do nothing during ci"""
+    print("The CI environment is set up correctly")
