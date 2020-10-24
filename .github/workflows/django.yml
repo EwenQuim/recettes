@@ -31,6 +31,7 @@ jobs:
           echo "SESSION_COOKIE_SECURE_ = False" >> recettes/local_settings.py
           echo "CSRF_COOKIE_SECURE_ = False" >> recettes/local_settings.py
           echo "SECURE_HSTS_SECONDS_ = 0" >> recettes/local_settings.py
+          echo "sentry_dsn = 'sentry_key'" >> recettes/local_settings.py
       - name: Run Checks
         run: |
           python manage.py check
