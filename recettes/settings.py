@@ -13,14 +13,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-from recettes import env
+from recettes import env  # pylint: disable=no-name-in-module
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Launch env
 if env.situation == "prod":
-    from recettes.settings_prod import (  # noqa # pylint: disable=unused-import
+    from recettes.settings_prod import (  # noqa # pylint: disable=unused-import, no-name-in-module
         CSRF_COOKIE_SECURE,
         DEBUG,
         SECRET_KEY,
@@ -34,12 +34,12 @@ if env.situation == "prod":
 
     sentry_setup()
 elif env.situation == "ci":
-    from recettes.settings_ci import (  # noqa # pylint: disable=unused-import
+    from recettes.settings_ci import (  # noqa # pylint: disable=unused-import, no-name-in-module
         DEBUG,
         SECRET_KEY,
     )
 elif env.situation == "local":
-    from recettes.settings_local import (  # noqa # pylint: disable=unused-import
+    from recettes.settings_local import (  # noqa # pylint: disable=unused-import, no-name-in-module
         DEBUG,
         SECRET_KEY,
     )
