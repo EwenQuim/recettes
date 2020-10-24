@@ -13,29 +13,43 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-from .local_settings import (
-    CSRF_COOKIE_SECURE_,
-    DEBUG_,
-    SECURE_HSTS_INCLUDE_SUBDOMAINS_,
-    SECURE_HSTS_PRELOAD_,
-    SECURE_HSTS_SECONDS_,
-    SECURE_SSL_REDIRECT_,
-    SESSION_COOKIE_SECURE_,
-    secret_key,
-)
+from recettes import env  # pylint: disable=no-name-in-module
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Launch env
+if env.situation == "prod":
+    from recettes.settings_prod import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        CSRF_COOKIE_SECURE,
+        DEBUG,
+        SECRET_KEY,
+        SECURE_HSTS_INCLUDE_SUBDOMAINS,
+        SECURE_HSTS_PRELOAD,
+        SECURE_HSTS_SECONDS,
+        SECURE_SSL_REDIRECT,
+        SESSION_COOKIE_SECURE,
+        sentry_setup,
+    )
+
+    sentry_setup()
+elif env.situation == "ci":
+    from recettes.settings_ci import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        DEBUG,
+        SECRET_KEY,
+    )
+elif env.situation == "local":
+    from recettes.settings_local import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        DEBUG,
+        SECRET_KEY,
+    )
+
+else:
+    raise Exception("Environment not properly declared.")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG_
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com"]
 
@@ -117,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr-fr"
 
 TIME_ZONE = "UTC"
 
@@ -133,11 +147,3 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
-# Deploy
-SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_INCLUDE_SUBDOMAINS_
-SECURE_HSTS_PRELOAD = SECURE_HSTS_PRELOAD_
-SECURE_SSL_REDIRECT = SECURE_SSL_REDIRECT_
-SESSION_COOKIE_SECURE = SESSION_COOKIE_SECURE_
-CSRF_COOKIE_SECURE = CSRF_COOKIE_SECURE_
-SECURE_HSTS_SECONDS = SECURE_HSTS_SECONDS_
