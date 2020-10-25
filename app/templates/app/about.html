@@ -1,7 +1,70 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-<h1>A propos</h1>
 
-<h2>Objectif du site</h2>
-{% endblock %}
+<h2 id="objectif"> 🚀 Objectif </h2>
+
+<p> Ce site fait plus que de réunir des recettes. </p>
+<p>
+    Le but est de vous fournir des idées de recettes <strong> pour la semaine </strong> :
+    <ul>
+        <li> de manière équilibrée </li>
+        <li> selon vos envies ou besoin </li>
+        <li> et en fournissant la liste de course de la semaine : plus de gâchis ! </li>
+    </ul>
+</p>
+
+<br> <hr>
+
+<h2 id="tuto"> 🍰 Ajouter ou modifier une recette </h2>
+
+<p> Cela se fait du côté de l'<a href="/admin">interface administrateur</a> du site. Vous pouvez toujours me demander d'obtenir ces accès. Il faudra écrire toute la recette à la main.</p>
+
+<p> Vous pouvez aussi <strong>simplement trouver une recette sur internet</strong>, et mes robots 🤖 se chargeront de les analyser et de les ajouter au site ! </p>
+
+<p> Pour faire cela, rien de plus simple:</p>
+<ul>
+<li> Envoyer un "bonjour" à <a href="https://t.me/recipeScrapperBot">@recipeScrapperBot</a> sur Telegram </li>
+<li> Trouvez une recette sur <a href="https://www.marmiton.org/">Marmiton</a> ou <a href="https://www.750g.com/">750g</a></li>
+<li> Envoyez le lien au bot </li>
+</ul>
+
+<p>
+<em> Pour éviter le spam ou recettes indésirées, la recette n'est pas ajoutée directement au site. Il faudra attendre l'approbation d'un des modérateurs, qui sont automatiquement mis au courant. </em></p>
+
+<br> <hr>
+
+<h2 id="vie-privee"> 🔐 Respect de la vie privée </h2>
+
+<p> Ce site respecte votre vie privée : </p>
+
+<ul>
+    <li>Cookies :
+    <ul>
+        <li>Aucun cookie tiers n'est utilisé</li>
+        <li>L'accès à l'interface admin est protégée par un token CSRF.</li>
+    </ul>
+    </li>
+    <li>Scripts :
+    <ul>
+        <li>Ce site n'utilise pas Google Analytics ou autres trackers invasifs</li>
+        <li>Aucun script JS autre que bootstrap (optionnel) n'est utilisé côté client</li>
+    </ul>
+    </li>
+    <li>Calculs :
+    <ul>
+        <li>Tout le calcul se fait côté serveur...</li>
+        <li>...sur la base des requêtes HTTP (url pour le moment) envoyées : transparence maximale</li>
+        <li>Aucune donnée en lien avec votre identité n'est stockée</li>
+        <li>C'est notamment pour cela qu'il faut <strong>copier ou partager le lien fourni</strong> pour retrouver votre planning de la semaine 😉</li>
+    </ul>
+    </li>
+</ul>
+
+<br> <hr>
+
+<h2 id="geek"> 🔧 Je veux changer la façon dont marche le site </h2>
+    <p>N'hésitez pas à <a href="https://github.com/EwenQuim/recettes/issues/new/choose">demander une fonctionnalité ou déclarer un bug</a>.</p>
+    <p>Mieux encore, vous pouvez  <strong>travailler sur le projet</strong>! Cela se passe <a href="https://github.com/EwenQuim/recettes">ici</a> </p>
+
+ {% endblock %}

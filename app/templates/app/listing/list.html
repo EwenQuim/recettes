@@ -1,0 +1,11 @@
+{% load static %}
+<div class="row">
+  {% for recette in recettes %}
+  <div class="col">
+    <div class="m-1">
+      <!-- Card -->
+      {% include 'app/listing/card.html' with recette=recette %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
