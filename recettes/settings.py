@@ -51,7 +51,7 @@ else:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com", "51.77.194.101'"]
 
 
 # Application definition
@@ -114,7 +114,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # pylint: disable=line-too-long
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",

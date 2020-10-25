@@ -1,30 +1,17 @@
-{% extends 'app/base.html' %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% block content %}
 
 {% if title %}
-<h2 class="text-center my-lg-2">{{ title }}</h2>
+  <h2 class="text-center my-lg-2">{{ title }}</h2>
 {% else %}
-<h2 class="text-center my-lg-2">Recettes disponibles</h2>
+  <h2 class="text-center my-lg-2">Recettes disponibles</h2>
 {% endif %}
 
 {% include 'app/search_form.html' with on_search=title %}
 
 {% if recettes|length_is:"0" %}
-
   <p>Rien n'a été trouvé... Cherchez autre chose !</p>
+{% else %}
+  {% include 'app/listing/list.html' with recettes=recettes %}
+{% endif %}
 
-{% else %} {% load static %}
-
-  <div class="row">
-    {% for recette in recettes %}
-    <div class="col">
-      <div class="m-1">
-        <!-- Card -->
-        {% include 'app/listing/card.html' with recette=recette %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-{% endif %} {% endblock %}
+{% endblock %}

@@ -5,7 +5,7 @@ Mostly calling to the database and apply the right compute functions
 
 from django.shortcuts import get_object_or_404, render
 
-from .compute import compute_missing_meals_from, compute_recipe_dict
+from .compute import compute_all_recipe, compute_missing_meals_from, compute_recipe_dict
 from .context import context_liste, context_suggestion
 from .models import Dosage, Ingredient, Recette
 from .parser import parse_slug
@@ -13,10 +13,8 @@ from .parser import parse_slug
 
 # Create your views here.
 def index(request):
-    """Returns the main view, at /
-    TODO make it more friendly
-    """
-    context = {"foo": "bar"}
+    """Returns the main view, at /"""
+    context = {"recettes": compute_all_recipe()}
     return render(request, "app/index.html", context)
 
 
@@ -32,8 +30,7 @@ def about(request):
 
 def listing(request):
     """Lists all accepted recipe"""
-    recettes = Recette.objects.filter(active=True)
-    context = {"recettes": recettes}
+    context = {"recettes": compute_all_recipe()}
     return render(request, "app/listing/listing.html", context)
 
 

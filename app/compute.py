@@ -7,6 +7,15 @@ import random
 from .models import Dosage, Recette
 
 
+def compute_all_recipe():
+    """Everyday it's shuffling
+
+    Returns:
+        Randomly ordered queryset of active recipes !
+    """
+    return Recette.objects.filter(active=True).order_by("?")
+
+
 def compute_missing_meals_from(week):
     """
     Given a int list, compute missing recipes according to some options

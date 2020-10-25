@@ -1,8 +1,8 @@
 <li class="list-group-item d-flex">
-  <div class="container">
+  <div class="container px-0">
     <a
       href="{% url 'app:suggestion' %}{{meal.urlChangeMeal}}"
-      class="btn btn-primary mr-2"
+      class="btn btn-outline-success mr-2"
     >
       <svg
         width="1em"
@@ -19,19 +19,33 @@
       </svg>
     </a>
 
-    <span style="max-width: 5em;">
+    <span style="max-width: 5em" class="align-middle">
       <em> {{ meal.mealName }} : </em>
     </span>
 
-    <span>
-      <strong> {{ meal.recette.name }} </strong>
+    <span class="align-middle">
+      <a href="{% url 'app:recettes' %}{{meal.recette.id}}">
+        <strong> {{ meal.recette.name }} </strong>
+      </a>
     </span>
 
-    <a
-      href="{% url 'app:recettes' %}{{meal.recette.id}}"
-      class="btn btn-primary float-right"
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      class="bi bi-clock m-1"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Cuisiner!
-    </a>
+      <path
+        fill-rule="evenodd"
+        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"
+      />
+    </svg>
+    <span class="m-1">{{ meal.recette.preparation_time }}</span>
   </div>
 </li>
