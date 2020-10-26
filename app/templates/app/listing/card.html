@@ -5,7 +5,11 @@
   <!-- Load image or display thumbnail -->
   {% with 'app/img/recettes/'|add:recette.image as image_static %}
   <div style="height: 150; overflow: hidden">
-    <a href="{% url 'app:recettes' %}{{recette.id}}" alt="{{recette.name}}" class="stretched-link">
+    <a
+      href="{% url 'app:recettes' %}{{recette.id}}"
+      alt="{{recette.name}}"
+      class="stretched-link"
+    >
       <img
         class="card-img-top"
         style="-ms-transform: translateY(-20%); transform: translateY(-20%)"
@@ -17,7 +21,7 @@
   {% endwith %}
 
   <!-- Card Body -->
-  <div class="card-body">
+  <div class="card-body py-2">
     <h5 class="card-title">{{ recette.name }}</h5>
 
     <div class="container-fluid">
@@ -67,6 +71,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
