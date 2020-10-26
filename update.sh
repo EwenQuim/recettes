@@ -6,6 +6,8 @@ normal=$(tput sgr0)
 # DEBUG
 # set -euxo pipefail
 
+cd /home/ubuntu/recettes
+
 echo "\n${bold}→ GIT - Pulling source code${normal}"
 git pull;
 
