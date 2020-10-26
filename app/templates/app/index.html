@@ -1,14 +1,25 @@
 {% extends 'app/base.html' %} {% block content %}
 
 <div class="jumbotron">
-  <h1 class="display-4">Vous pouvez manger <em>mieux.</em></h1>
-  <p class="lead">Je vous ai concocté un menu qui saura vous satisfaire, que vous soyez pressé ou gourmet</p>
-  <hr class="my-4">
-  <p>Sélectionnez vos préférences et je me charge du reste. Plus de soucis à se faire !</p>
-  <a class="btn btn-primary btn-lg" href="{% url 'app:suggestion' %}" role="button">J'y vais !</a>
+  <h2 class="display-4">Vous pouvez manger <em>mieux.</em></h2>
+  <p class="lead">
+    Je vous ai concocté un menu qui saura vous satisfaire, que vous soyez pressé
+    ou gourmet
+  </p>
+  <hr class="my-4" />
+  <p>
+    Sélectionnez vos préférences et je me charge du reste. Plus de soucis à se
+    faire !
+  </p>
+  <a
+    class="btn btn-primary btn-lg"
+    href="{% url 'app:suggestion' %}"
+    role="button"
+    >J'y vais !</a
+  >
 </div>
 
-<h2 class="text-center my-lg-2"> Toutes les recettes</h2>
+<h2 class="text-center my-lg-2">Toutes les recettes</h2>
 
 {% include 'app/search_form.html' %}
 
