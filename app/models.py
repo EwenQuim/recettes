@@ -8,6 +8,40 @@ from django.db import models
 class Recette(models.Model):
     """Recette : represents a recipe, the core of the website"""
 
+    class Categorie(models.TextChoices):
+        """self-explanatory"""
+
+        entree = "entree", "Entrée"
+        plat = "plat", "Plat"
+        dessert = "dessert", "Dessert"
+
+    # Model Methods
+    def __str__(self):
+        return self.name
+
+    def clean(self):
+        self.name = self.name.capitalize()
+
+    def veggie(self):
+        """Self-explanatory. Just call
+
+        bolognese.veggie() == False,
+        ratatouille.veggie() == True
+
+        Returns:
+            [bool]
+        """
+
+        for ingredient in self.ingredients.all():
+            if (ingredient.categorie == "viande") or (
+                ingredient.categorie == "poisson"
+            ):
+                return False
+        return True
+
+    veggie.boolean = True
+    veggie.short_description = "Végé ?"
+
     name = models.CharField(
         verbose_name="Nom",
         unique=True,
@@ -19,46 +53,31 @@ class Recette(models.Model):
     )
     instructions = models.TextField()
     active = models.BooleanField(default=False)
-    desert = models.BooleanField(verbose_name="Dessert", default=False)
+
+    categorie = models.CharField(
+        max_length=25, choices=Categorie.choices, default=Categorie.plat
+    )
     pour = models.PositiveSmallIntegerField(default=2)
     preparation_time = models.PositiveSmallIntegerField(default=15)
     image = models.CharField(
         max_length=100,
-        help_text="url de l'image à afficher. Est stockée en local.",
+        help_text="url de l'image à afficher, \
+            stockée en local (recette ajoutée par le bot)",
         default="empty",
     )
-
-    def veggie(self):
-        """Self-explanatory. Just call
-
-        bolognese.veggie() == False,
-        ratatouille.veggie() == True
-
-        Returns:
-            [bool]
-        """
-        for dosage in Dosage.objects.filter(recette_id=self.id):
-            for ingredient in Ingredient.objects.filter(id=dosage.ingredient_id):
-                if (ingredient.categorie == "viande") or (
-                    ingredient.categorie == "poisson"
-                ):
-                    return False
-        return True
-
-    veggie.boolean = True
-    veggie.short_description = "Végé ?"
-
-    def __str__(self):
-        return self.name
+    image_web = models.CharField(
+        max_length=100,
+        help_text="url à afficher, si l'image n'est pas disponible \
+            sur le serveur",
+        default=(  # Placeholder
+            "https://paleomg.com/wp-content/plugins/simple-recipe-pro\
+            /assets/placeholder.png",
+        ),
+    )
 
 
 class Ingredient(models.Model):
     """Modelling a single ingredient and its properties"""
-
-    name = models.CharField(max_length=100, unique=True)
-    recettes = models.ManyToManyField(
-        Recette, related_name="ingredients", blank=True, through="Dosage"
-    )
 
     class Categorie(models.TextChoices):
         """self-explanatory"""
@@ -75,21 +94,35 @@ class Ingredient(models.Model):
         autre = "autre", "⭐️ Autre"
         inconnu = "inconnu", "❌ Inconnu"
 
+    # Model Methods
+    def __str__(self):
+        return self.name
+
+    def clean(self):
+        self.name = self.name.capitalize()
+
+    def nb_recettes(self):
+        """Returns the number of recipes in which there is the ingredient"""
+        return self.recettes.count()
+
+    nb_recettes.short_description = "Recettes"
+
+    # Model Fields
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+        help_text="Concis. Majuscule seulement au début.",
+    )
+    recettes = models.ManyToManyField(
+        Recette, related_name="ingredients", blank=True, through="Dosage"
+    )
     categorie = models.CharField(
         max_length=25, choices=Categorie.choices, default=Categorie.inconnu
     )
 
-    def __str__(self):
-        return self.name
-
 
 class Dosage(models.Model):
     """The quantity of each ingredient for a given recipe"""
-
-    recette = models.ForeignKey(Recette, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantite = models.IntegerField()
-    displayed = models.CharField(max_length=200, blank=True)
 
     class Unites(models.TextChoices):
         """self-explanatory"""
@@ -102,4 +135,13 @@ class Dosage(models.Model):
         t = "t", "tranches"
         u = "u", "unite"
 
+    # Model Methods
+    def __str__(self):
+        return self.displayed
+
+    # Model Fields
+    recette = models.ForeignKey(Recette, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    quantite = models.IntegerField()
     unite = models.CharField(max_length=20, choices=Unites.choices, default=Unites.u)
+    displayed = models.CharField(max_length=200, blank=True)
