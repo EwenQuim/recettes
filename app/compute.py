@@ -16,11 +16,20 @@ def compute_all_recipe():
     return Recette.objects.filter(active=True).order_by("?")
 
 
-def compute_missing_meals_from(week):
+def compute_missing_meals_from(week, *args):
     """
     Given a int list, compute missing recipes according to some options
     """
-    recettes = Recette.objects.filter(active=True, desert=False)
+    if args:
+        _, _, veggie = args
+
+        veggie = veggie == "on"
+
+    recettes = list(Recette.objects.filter(active=True, categorie="plat"))
+
+    if veggie:
+        recettes = [recette for recette in recettes if recette.veggie()]
+
     meals = []
     for _, meal in zip(range(len(week)), week):
         if meal == 0:
