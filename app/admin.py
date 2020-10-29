@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import Ingredient, Recette
+from .models import Dosage, Ingredient, Recette
 
 # Main settings
 admin.site.site_header = "Agrégateur de recettes"
@@ -11,15 +11,23 @@ admin.site.index_title = (
     "Bienvenue sur l'interface d'administration du site de suggestions recettes."
 )
 
+# Dosage
+admin.site.register(Dosage)
+
 
 # Recette
 class RecetteIngredientInline(admin.TabularInline):
     """ Détaille les ingredients dans chaque recette """
 
-    model = Ingredient.recettes.through  # the query goes through an intermediate table.
+    model = Dosage  # the query goes through an intermediate table.
     extra = 0
     verbose_name = "Ingrédient"
     verbose_name_plural = "Ingrédients"
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "ingredient":
+            kwargs["queryset"] = Ingredient.objects.order_by("name")
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 @admin.register(Recette)
@@ -29,8 +37,8 @@ class RecetteAdmin(admin.ModelAdmin):
     inlines = [
         RecetteIngredientInline,
     ]
-    list_display = ["name", "active", "description", "veggie", "desert"]
-    list_filter = ["active", "desert"]
+    list_display = ["name", "active", "description", "veggie", "categorie"]
+    list_filter = ["active", "categorie"]
     list_editable = ("description",)
     search_fields = [
         "name",
@@ -69,12 +77,27 @@ class RecetteAdmin(admin.ModelAdmin):
     class_recipe_dish.short_description = "🍲 Marquer comme étant un plat"
 
 
+class RecettesPourCetIngredientInline(admin.TabularInline):
+    """ Détaille les ingredients dans chaque recette """
+
+    model = Dosage  # the query goes through an intermediate table.
+    extra = 0
+    verbose_name = "Ingrédient"
+    readonly_fields = ("recette",)
+    fields = ["recette", "quantite", "unite", "displayed"]
+    can_delete = False
+
+
 # Ingredient
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     """ Interface admin pour les ingrédients """
 
-    list_display = ["name", "categorie"]
+    list_display = ["name", "categorie", "nb_recettes"]
     list_editable = ("categorie",)
     list_filter = ("categorie",)
     search_fields = ["name"]
+
+    inlines = [
+        RecettesPourCetIngredientInline,
+    ]
