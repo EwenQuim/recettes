@@ -6,7 +6,8 @@
 {% include 'app/suggestions/search_field.html' %}
 
 <ul class="list-group">
-  {% for meal in week %} {%include 'app/suggestions/line.html' with meal=meal%}
+  {% for meal in week %}
+    {% include 'app/suggestions/line.html' with meal=meal %}
   {% endfor %}
 </ul>
 
@@ -19,8 +20,11 @@
   <li>
     <label for="checkbox"></label>
     <input type="checkbox" name="{{element.name}}" id="checkbox" />
-    {{element.name}} {% if element.quantite %}
-    <em> ({{element.quantite}} {{element.unite}}) </em>
+    {{element.name}}
+    {% if element.quantite and element.unite != "u" %}
+      <em> ({{element.quantite}} {{element.unite}}) </em>
+    {% elif element.quantite and element.unite == "u" %}
+      <em> ({{element.quantite}}) </em>
     {% endif %}
   </li>
 

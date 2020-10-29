@@ -1,4 +1,4 @@
-<form>
+<form action="{% url 'app:suggestion' %}" method="get">
   <div class="row">
     <div class="col-sm">
       <fieldset class="form-group">
@@ -7,9 +7,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="gridRadios"
+            name="time"
             id="gridRadios1"
-            value="option1"
+            value="presse"
           />
           <label class="form-check-label" for="gridRadios1">
             Toujours pressé
@@ -19,9 +19,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="gridRadios"
+            name="time"
             id="gridRadios2"
-            value="option2"
+            value="semaine"
           />
           <label class="form-check-label" for="gridRadios2">
             Pressé en semaine
@@ -31,9 +31,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="gridRadios"
+            name="time"
             id="gridRadios3"
-            value="option3"
+            value="midis"
             checked
           />
           <label class="form-check-label" for="gridRadios3">
@@ -44,9 +44,9 @@
           <input
             class="form-check-input"
             type="radio"
-            name="gridRadios"
+            name="time"
             id="gridRadios4"
-            value="option4"
+            value="chomeur"
           />
           <label class="form-check-label" for="gridRadios4">
             Disponible pour cuisiner des bons repas
@@ -63,7 +63,7 @@
             <input
               class="form-check-input"
               type="radio"
-              name="diffs"
+              name="difficulte"
               id="diff1"
               value="chef"
             />
@@ -75,7 +75,7 @@
             <input
               class="form-check-input"
               type="radio"
-              name="diffs"
+              name="difficulte"
               id="diff2"
               value="normal"
               checked
@@ -88,7 +88,7 @@
             <input
               class="form-check-input"
               type="radio"
-              name="diffs"
+              name="difficulte"
               id="diff3"
               value="noob"
             />
@@ -104,36 +104,24 @@
       <div class="form-group">
         <legend>Régime</legend>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck1" />
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="gridCheck1"
+            name="veggie"
+          />
           <label class="form-check-label" for="gridCheck1"> Végétarien </label>
         </div>
       </div>
+
+      <button class="btn btn-outline-success m-2 my-sm-0" type="submit">
+        Nouveau menu
+      </button>
     </div>
   </div>
-
+  <hr />
   <div class="container m-2">
     <div class="row">
-      <div class="col-sm mb-4">
-        <a
-          class="btn btn-outline-success my-2 my-sm-0"
-          href="{% url 'app:suggestion' %}"
-          ><svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-arrow-left-right"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"
-            />
-          </svg>
-        </a>
-        <span class="mx-2"> Générer un nouveau menu hebdomadaire </span>
-      </div>
-
       <div class="col-sm mb-4">
         <a href="/suggestion/{{generatedUrl}}" class="text-normal align-middle">
           <svg

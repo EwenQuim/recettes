@@ -1,10 +1,6 @@
 {% extends 'app/base.html' %} {% block content %}
 
-{% if title %}
-  <h2 class="text-center my-lg-2">{{ title }}</h2>
-{% else %}
-  <h2 class="text-center my-lg-2">Recettes disponibles</h2>
-{% endif %}
+<h2 class="text-center my-lg-2">{{ title | default:"Recettes disponibles" }}</h2>
 
 {% include 'app/search_form.html' with on_search=title %}
 

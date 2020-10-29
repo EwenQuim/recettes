@@ -82,13 +82,17 @@ def suggestion(request, slug=("0-" * 14)[:-1]):
     given a list on already known meals (id > 0)
     where the id = 0
     """
+    time = request.GET.get("time")
+    diff = request.GET.get("difficulte")
+    veggie = request.GET.get("veggie")
+
     week_numbers = parse_slug(slug)
 
     if week_numbers:  # slug understandable
 
         # Compute meals
         # options = {"veggie": False}
-        meals = compute_missing_meals_from(week_numbers)
+        meals = compute_missing_meals_from(week_numbers, time, diff, veggie)
 
         liste_course = compute_recipe_dict(meals)
 

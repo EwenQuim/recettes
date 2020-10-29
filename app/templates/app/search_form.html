@@ -1,15 +1,23 @@
 <div class="d-flex justify-content-center">
-    <form action="{% url 'app:recherche' %}" method="get" accept-charset="utf-8">
-      
-      <div class="form-inline my-2 my-lg-3 ">
-        <label for="searchForm" class="collapse">Chercher une recette</label>
-        <input id="searchForm" class="form-control mx-2" placeholder="Chercher une recette" name="query">
-        <button class="btn btn-outline-success m-2 my-sm-0" type="submit">GO!</button>
-        {% if on_search %}
-            <a class="btn btn-outline-info m-2 my-sm-0" href="{% url 'app:recettes' %}">Voir toutes les recettes</a>
-        {% endif %}
-      </div>
-    </form>
-
-    
-  </div>
+  <form action="{% url 'app:recherche' %}" method="get" accept-charset="utf-8">
+    <div class="form-inline my-2 my-lg-3">
+      <label for="searchForm" class="collapse">Chercher une recette</label>
+      <input
+        id="searchForm"
+        class="form-control mx-2"
+        placeholder="Chercher une recette"
+        name="query"
+      />
+      <button class="btn btn-outline-success m-2 my-sm-0" type="submit">
+        GO!
+      </button>
+      {% if on_search %}
+      <a
+        class="btn btn-outline-info m-2 my-sm-0"
+        href="{% url 'app:recettes' %}"
+        >Voir toutes les recettes</a
+      >
+      {% endif %}
+    </div>
+  </form>
+</div>
