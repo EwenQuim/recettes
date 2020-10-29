@@ -29,6 +29,9 @@ def compute_missing_meals_from(week, time=None, diff=None, veggie=None):
     if veggie:
         recettes = [recette for recette in recettes if recette.veggie()]
 
+    if time == "presse":
+        recettes = [recette for recette in recettes if recette.preparation_time <= 25]
+
     meals = []
     for _, meal in zip(range(len(week)), week):
         if meal == 0:
