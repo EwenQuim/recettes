@@ -1,2 +1,6 @@
 [run]
-omit = env/*
+omit =
+    env/*
+    recettes/*sgi.py
+    app/migrations/
+    manage.py

@@ -1,3 +1,11 @@
 {
-    "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "python.linting.pylintArgs": ["--load-plugins=pylint_django"],
+  "python.linting.pylintEnabled": true,
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "cSpell.words": [
+    "noqa"
+  ],
 }

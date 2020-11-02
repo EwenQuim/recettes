@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  web:
+    restart: unless-stopped
+    build: ./web
+    expose:
+      - "8000"
+    volumes:
+      - web-static:/usr/src/app/static
+    env_file: .env
+    command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
+
+  nginx:
+    restart: unless-stopped
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - web-static:/www/static
+    links:
+      - web:web
+
+volumes:
+  web-static:

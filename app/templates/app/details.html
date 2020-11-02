@@ -2,24 +2,46 @@
 {% load markdown_deux_tags %}
 
 {% block content %}
-  <h1> {{ recette.name }} </h1>
-
-  <p> {{ recette.pour }} personnes / {{ recette.preparation_time }} min </p>
-
-  <p> <em>{{ recette.description }}</em> </p>
 
 
+<h1>{{ recette.name }}</h1>
+<p>{{ recette.pour }} personnes / {{ recette.preparation_time }} min</p>
 
-  <h2> Ingrédients </h2>
+<p><em>{{ recette.description }}</em></p>
 
-  <ul>
-    {% for i in ingredients %}
-    <li> {{ i.name }} </li>
-    {% endfor %}
-  </ul>
 
-  <h2> Instructions </h2>
-  <p>
-    {{ recette.instructions | markdown }}
-  </p>
+<div class="container">
+<div class="row">
+
+<div class="col-lg">
+<h2>Ingrédients</h2>
+
+<ul>
+  {% for i in ingredients_displayed %}
+  <li>{{ i }}</li>
+  {% endfor %}
+</ul>
+</div>
+
+<div class="col-lg" style="height: 20em; overflow: hidden">
+{% load static %}
+{% with 'app/img/recettes/'|add:recette.image as image_static %}
+  <img
+    class="card-img-top"
+    style="-ms-transform: translateY(-30%); transform: translateY(-30%)"
+    src="{% static image_static %}"
+    alt="recette.name"
+  />
+{% endwith %}
+</div>
+
+
+</div>
+</div>
+
+<h2>Instructions</h2>
+<p>{{ recette.instructions | markdown }}</p>
+
+<a href="/admin/app/recette/{{ recette.id }}">Éditer</a>
+
 {% endblock %}

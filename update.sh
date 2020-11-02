@@ -3,8 +3,13 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+# DEBUG
+# set -euxo pipefail
+
+cd /home/ubuntu/recettes
+
 echo "\n${bold}→ GIT - Pulling source code${normal}"
-git pull
+git pull;
 
 echo "\n${bold}→ PYTHON ENV - Activating virtualenv${normal}"
 source ./env/bin/activate
@@ -19,13 +24,21 @@ python manage.py migrate
 echo "\n${bold}→ DJANGO - Collecting static files${normal}"
 python manage.py collectstatic --no-input
 
-echo "\n${bold}→ PYTHON ENV - Exiting virtualenv${normal}"
-deactivate
+echo "\n${bold}→ SERVER - Copying server configuration${normal}"
+sudo cp -v ops/gunicorn.conf /etc/systemd/system/gunicorn.service
+sudo cp -v ops/nginx.conf /etc/nginx/sites-available/recettes
+sudo ln -v -f -s /etc/nginx/sites-available/recettes /etc/nginx/sites-enabled/recettes
 
 echo "\n${bold}→ SERVER - Reload Daemons${normal}"
 sudo systemctl daemon-reload
 
 echo "\n${bold}→ SERVER - Restarting gunicorn${normal}"
 sudo systemctl restart gunicorn
+
+echo "\n${bold}→ SERVER - Restarting nginx${normal}"
+sudo systemctl restart nginx
+
+echo "\n${bold}→ PYTHON ENV - Exiting virtualenv${normal}"
+deactivate
 
 echo "\n${bold}→ Updating successful!${normal}"

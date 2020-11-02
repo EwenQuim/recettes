@@ -10,24 +10,48 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
-from .local_settings import secret_key, DEBUG_, CSRF_COOKIE_SECURE_, SECURE_HSTS_INCLUDE_SUBDOMAINS_, SECURE_HSTS_PRELOAD_, SECURE_HSTS_SECONDS_, SECURE_SSL_REDIRECT_, SESSION_COOKIE_SECURE_
 import os
+from pathlib import Path
+
+from recettes import env  # pylint: disable=no-name-in-module
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Launch env
+if env.situation == "prod":
+    from recettes.settings_prod import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        CSRF_COOKIE_SECURE,
+        DEBUG,
+        SECRET_KEY,
+        SECURE_HSTS_INCLUDE_SUBDOMAINS,
+        SECURE_HSTS_PRELOAD,
+        SECURE_HSTS_SECONDS,
+        SECURE_SSL_REDIRECT,
+        SESSION_COOKIE_SECURE,
+        sentry_setup,
+    )
+
+    sentry_setup()
+elif env.situation == "ci":
+    from recettes.settings_ci import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        DEBUG,
+        SECRET_KEY,
+    )
+elif env.situation == "local":
+    from recettes.settings_local import (  # noqa # pylint: disable=unused-import, no-name-in-module
+        DEBUG,
+        SECRET_KEY,
+    )
+
+else:
+    raise Exception("Environment not properly declared.")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG_
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'recettes.quimerch.com']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com", "51.77.194.101"]
 
 
 # Application definition
@@ -39,49 +63,49 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppConfig',
+    "app.apps.ApplicationConfig",
     'django_extensions',
     'markdown_deux',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'recettes.urls'
+ROOT_URLCONF = "recettes.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'recettes.wsgi.application'
+WSGI_APPLICATION = "recettes.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -91,16 +115,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # pylint: disable=line-too-long
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -108,9 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "fr-fr"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -122,13 +146,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR, 'static/')
-
-# Deploy
-SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_INCLUDE_SUBDOMAINS_
-SECURE_HSTS_PRELOAD = SECURE_HSTS_PRELOAD_
-SECURE_SSL_REDIRECT = SECURE_SSL_REDIRECT_
-SESSION_COOKIE_SECURE = SESSION_COOKIE_SECURE_
-CSRF_COOKIE_SECURE = CSRF_COOKIE_SECURE_
-SECURE_HSTS_SECONDS = SECURE_HSTS_SECONDS_
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")

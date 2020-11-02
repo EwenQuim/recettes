@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %} {% block content %}
+
+<h2 class="text-center my-lg-2">{{ title | default:"Recettes disponibles" }}</h2>
+
+{% include 'app/search_form.html' with on_search=title %}
+
+{% if recettes|length_is:"0" %}
+  <p>Rien n'a été trouvé... Cherchez autre chose !</p>
+{% else %}
+  {% include 'app/listing/list.html' with recettes=recettes %}
+{% endif %}
+
+{% endblock %}

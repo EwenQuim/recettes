@@ -1,0 +1,170 @@
+<form action="{% url 'app:suggestion' %}" method="get">
+  <div class="row">
+    <div class="col-sm">
+      <fieldset class="form-group">
+        <legend>Temps disponible</legend>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="time"
+            id="gridRadios1"
+            value="presse"
+          />
+          <label class="form-check-label" for="gridRadios1">
+            Toujours pressé
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="time"
+            id="gridRadios2"
+            value="semaine"
+          />
+          <label class="form-check-label" for="gridRadios2">
+            Pressé en semaine
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="time"
+            id="gridRadios3"
+            value="midis"
+            checked
+          />
+          <label class="form-check-label" for="gridRadios3">
+            Pressé le midi en semaine
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="time"
+            id="gridRadios4"
+            value="chomeur"
+          />
+          <label class="form-check-label" for="gridRadios4">
+            Disponible pour cuisiner des bons repas
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="col-sm">
+      <div class="form-group">
+        <fieldset class="form-group">
+          <legend>Difficulté</legend>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="difficulte"
+              id="diff1"
+              value="chef"
+            />
+            <label class="form-check-label" for="diff1">
+              Je suis un chef !
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="difficulte"
+              id="diff2"
+              value="normal"
+              checked
+            />
+            <label class="form-check-label" for="diff2">
+              Je suis un cuisinier normal
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="difficulte"
+              id="diff3"
+              value="noob"
+            />
+            <label class="form-check-label" for="diff3">
+              Je ne veux pas me prendre la tête
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="form-group">
+        <legend>Régime</legend>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="gridCheck1"
+            name="veggie"
+          />
+          <label class="form-check-label" for="gridCheck1"> Végétarien </label>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-success m-2 my-sm-0" type="submit">
+        Nouveau menu
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div class="container m-2">
+    <div class="row">
+      <div class="col-sm mb-4">
+        <a href="/suggestion/{{generatedUrl}}" class="text-normal align-middle">
+          <svg
+            width="1.5em"
+            height="1.5em"
+            viewBox="0 0 16 16"
+            class="bi bi-clipboard-check"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zm4.354 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+          Copie/partage ce lien pour retrouver ton menu !</a
+        >
+        <a
+          href="{% url 'app:about' %}#vie-privee"
+          class="text-secondary align-middle"
+        >
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 16 16"
+            class="bi bi-question-circle"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</form>

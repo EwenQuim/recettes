@@ -1,25 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="{% url 'app:index' %}">Recettes</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <a class="navbar-brand" href="{% url 'app:index' %}">Recettes</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:index' %}"
+          >Accueil <span class="sr-only">(current)</span></a
+        >
+      </li>
 
-        <li class="nav-item active">
-        <a class="nav-link" href="{% url 'app:index' %}">Accueil <span class="sr-only">(current)</span></a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:recettes' %}"> Recettes </a>
+      </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'app:recettes' %}">Toutes les recettes</a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:suggestion' %}"> Suggestion </a>
+      </li>
 
-
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:about' %}"> A propos </a>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="{% url 'app:recherche' %}" method="get" accept-charset="utf-8">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
+    <form
+      class="form-inline my-2 my-lg-0"
+      action="{% url 'app:recherche' %}"
+      method="get"
+      accept-charset="utf-8"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Chercher une recette"
+        aria-label="Search"
+        name="query"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        GO!
+      </button>
     </form>
-    </div>
+  </div>
 </nav>

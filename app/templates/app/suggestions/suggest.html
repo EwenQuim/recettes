@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %} {% block content %}
+
+<h1>💡 Suggestions pour la semaine</h1>
+<br />
+
+{% include 'app/suggestions/search_field.html' %}
+
+<ul class="list-group">
+  {% for meal in week %}
+    {% include 'app/suggestions/line.html' with meal=meal %}
+  {% endfor %}
+</ul>
+
+<hr />
+<h2>Liste de courses de la semaine</h2>
+
+<ul>
+  {% for element in liste %}
+
+  <li>
+    <label for="checkbox"></label>
+    <input type="checkbox" name="{{element.name}}" id="checkbox" />
+    {{element.name}}
+    {% if element.quantite and element.unite != "u" %}
+      <em> ({{element.quantite}} {{element.unite}}) </em>
+    {% elif element.quantite and element.unite == "u" %}
+      <em> ({{element.quantite}}) </em>
+    {% endif %}
+  </li>
+
+  {% endfor %}
+</ul>
+
+{% endblock %}
