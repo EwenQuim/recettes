@@ -10,6 +10,10 @@ A website giving you recipe ideas for an healthy week.
 
 Tired of unique random recipes? Try to get weekly equilibrium!
 
+## Database
+
+![Database](database.png)
+
 ## License
 
 This project is under the [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/) license

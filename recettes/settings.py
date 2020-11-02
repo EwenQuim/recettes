@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app.apps.ApplicationConfig",
     "markdown_deux",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
