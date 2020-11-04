@@ -46,10 +46,12 @@ class Recette(models.Model):
         verbose_name="Nom",
         unique=True,
         max_length=100,
-        help_text="Concis. Majuscule seulement au début.",
+        help_text='Concis. Pas de "recette originale" ou autre style.',
     )
     description = models.CharField(
-        max_length=150, help_text="Description rapide et alléchante!", blank=True
+        max_length=150,
+        help_text="Description rapide et alléchante ! Style libre",
+        blank=True,
     )
     instructions = models.TextField()
     active = models.BooleanField(default=False)
@@ -58,7 +60,17 @@ class Recette(models.Model):
         max_length=25, choices=Categorie.choices, default=Categorie.plat
     )
     pour = models.PositiveSmallIntegerField(default=2)
-    preparation_time = models.PositiveSmallIntegerField(default=15)
+    cooking_time = models.PositiveSmallIntegerField(
+        verbose_name="Temps passé en cuisine",
+        default=15,
+        help_text="Temps total (cuisson + préparation",
+    )
+    ponderation = models.PositiveSmallIntegerField(
+        default=3, help_text="1 : rare / 5 : fréquent"
+    )
+    difficulte = models.PositiveSmallIntegerField(
+        default=3, help_text="1 : facile / 5 : dur"
+    )
     image = models.CharField(
         max_length=100,
         help_text="url de l'image à afficher, \
@@ -89,8 +101,9 @@ class Ingredient(models.Model):
         viande = "viande", "🍗 Viande"
         poisson = "poisson", "🐟 Poisson"
         laitage = "laitage", "🥛 Laitage"
-        sucre = "sucre", "🍬 Sucre"
+        sucre = "sucre", "🍬 Sucré"
         sauce = "sauce", "🥣 Sauce"
+        pain = "pain", "🥖 Pain"
         autre = "autre", "⭐️ Autre"
         inconnu = "inconnu", "❌ Inconnu"
 

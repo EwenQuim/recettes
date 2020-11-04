@@ -1,42 +1,34 @@
-{% extends 'app/base.html' %}
-{% load markdown_deux_tags %}
-
-{% block content %}
-
+{% extends 'app/base.html' %} {% load markdown_deux_tags %} {% block content %}
 
 <h1>{{ recette.name }}</h1>
-<p>{{ recette.pour }} personnes / {{ recette.preparation_time }} min</p>
+<p>{{ recette.pour }} personnes / {{ recette.cooking_time }} min</p>
 
 <p><em>{{ recette.description }}</em></p>
 
-
 <div class="container">
-<div class="row">
+  <div class="row">
+    <div class="col-lg">
+      <h2>Ingrédients</h2>
 
-<div class="col-lg">
-<h2>Ingrédients</h2>
+      <ul>
+        {% for i in ingredients_displayed %}
+        <li>{{ i }}</li>
+        {% endfor %}
+      </ul>
+    </div>
 
-<ul>
-  {% for i in ingredients_displayed %}
-  <li>{{ i }}</li>
-  {% endfor %}
-</ul>
-</div>
-
-<div class="col-lg" style="height: 20em; overflow: hidden">
-{% load static %}
-{% with 'app/img/recettes/'|add:recette.image as image_static %}
-  <img
-    class="card-img-top"
-    style="-ms-transform: translateY(-30%); transform: translateY(-30%)"
-    src="{% static image_static %}"
-    alt="recette.name"
-  />
-{% endwith %}
-</div>
-
-
-</div>
+    <div class="col-lg" style="height: 20em; overflow: hidden">
+      {% load static %} {% with 'app/img/recettes/'|add:recette.image as
+      image_static %}
+      <img
+        class="card-img-top"
+        style="-ms-transform: translateY(-30%); transform: translateY(-30%)"
+        src="{% static image_static %}"
+        alt="recette.name"
+      />
+      {% endwith %}
+    </div>
+  </div>
 </div>
 
 <h2>Instructions</h2>
