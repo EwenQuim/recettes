@@ -63,13 +63,13 @@ class Recette(models.Model):
     cooking_time = models.PositiveSmallIntegerField(
         verbose_name="Temps passé en cuisine",
         default=15,
-        help_text="Temps total (cuisson + préparation",
+        help_text="Temps total (cuisson + préparation)",
     )
     ponderation = models.PositiveSmallIntegerField(
-        default=3, help_text="1 : rare / 5 : fréquent"
+        default=3, help_text="1 : rare / 5 : fréquemment recommandé"
     )
-    difficulte = models.PositiveSmallIntegerField(
-        default=3, help_text="1 : facile / 5 : dur"
+    difficulty = models.PositiveSmallIntegerField(
+        verbose_name="Difficulté", default=3, help_text="1 : facile / 5 : dur"
     )
     image = models.CharField(
         max_length=100,
