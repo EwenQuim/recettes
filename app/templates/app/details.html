@@ -1,4 +1,6 @@
-{% extends 'app/base.html' %} {% load markdown_deux_tags %} {% block content %}
+{% extends 'app/base.html' %} {% load markdown_deux_tags %}
+
+{% block content %}
 
 <h1>{{ recette.name }}</h1>
 <p>{{ recette.pour }} personnes / {{ recette.cooking_time }} min</p>
@@ -18,8 +20,9 @@
     </div>
 
     <div class="col-lg" style="height: 20em; overflow: hidden">
-      {% load static %} {% with 'app/img/recettes/'|add:recette.image as
-      image_static %}
+      {% load static %}
+      
+      {% with 'app/img/recettes/'|add:recette.image as image_static %}
       <img
         class="card-img-top"
         style="-ms-transform: translateY(-30%); transform: translateY(-30%)"
