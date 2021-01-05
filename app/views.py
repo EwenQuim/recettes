@@ -83,7 +83,7 @@ def suggestion(request, slug=("0-" * 14)[:-1]):
     where the id = 0
     """
     time = request.GET.get("time")
-    diff = request.GET.get("difficulte")
+    diff = request.GET.get("difficulty")
     veggie = request.GET.get("veggie")
 
     week_numbers = parse_slug(slug)
