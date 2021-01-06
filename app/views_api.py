@@ -1,7 +1,10 @@
+"""Views for the API"""
+import random
+
+from rest_framework import generics
+
 from .serializers import RecetteSerializer
 from .models import Recette
-from rest_framework import generics
-import random
 
 
 class ListRecipe(generics.ListCreateAPIView):
