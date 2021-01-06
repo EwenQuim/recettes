@@ -27,8 +27,7 @@ jobs:
       - name: Cleaning before db init
         run: |
           pwd
-          ls 
-          rm -r app/__pycache__
+          ls
           rm -r app/migrations
       - name: Create DB
         run: |
