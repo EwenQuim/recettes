@@ -5,6 +5,7 @@ Take an url and calls the right view to process it
 from django.urls import path
 
 from . import views  # import views so we can use them in urls.
+from . import views_api  # import views so we can use them in urls.
 
 app_name = "app"
 
@@ -16,4 +17,6 @@ urlpatterns = [
     path("recettes/", views.listing, name="recettes"),
     path("suggestion/", views.suggestion, name="suggestion"),
     path("suggestion/<slug:slug>", views.suggestion, name="suggestion"),
+    path("api/recettes", views_api.ListRecipe.as_view()),
+    path("api/random", views_api.RandomRecipe.as_view()),
 ]

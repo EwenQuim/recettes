@@ -51,7 +51,12 @@ else:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "recettes.quimerch.com", "51.77.194.101"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "recettes.quimerch.com",
+    "51.77.194.101",
+]
 
 
 # Application definition
@@ -65,6 +70,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app.apps.ApplicationConfig",
     "markdown_deux",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
