@@ -24,9 +24,15 @@ jobs:
       - name: Create local settings placeholder
         run: |
           echo "situation = 'ci' " > recettes/env.py
+      - name: Cleaning before db init
+       run: |
+          rm db.sqlite3
+          rm -r app/__pycache__
+          rm -r app/migrations
       - name: Create DB
         run: |
-          python manage.py makemigrations && python manage.py migrate
+          python manage.py makemigrations
+          python manage.py migrate
       - name: Run Checks
         run: |
           python manage.py check
