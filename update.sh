@@ -8,8 +8,16 @@ normal=$(tput sgr0)
 
 cd /home/ubuntu/recettes
 
+# Protecting bdd
+cp db.sqlite3 ../backup_bdd
+
 echo "\n${bold}→ GIT - Pulling source code${normal}"
 git pull;
+
+# Restoring bdd
+rm -v db.sqlite3
+mv -v ../db.sqlite3 .
+
 
 echo "\n${bold}→ PYTHON ENV - Activating virtualenv${normal}"
 source ./env/bin/activate
