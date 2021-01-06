@@ -21,9 +21,12 @@ class RandomRecipe(generics.ListCreateAPIView):
     Gives a random recipe
     """
 
-    pks = Recette.objects.values_list("pk", flat=True)
-    random_pk = random.choice(pks)
+    #pks = Recette.objects.values_list("pk", flat=True)
+    #random_pk = random.choice(pks)
     serializer_class = RecetteSerializer
 
     def get_queryset(self):
+        """
+        Returns first of a random list
+        """
         return [Recette.objects.order_by("?").first()]
