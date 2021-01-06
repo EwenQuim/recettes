@@ -12,6 +12,10 @@ class RecetteSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
+        """
+        Fields selected that are public for reading and writing (GET and POST)
+        """
+
         fields = (
             "id",
             "name",
