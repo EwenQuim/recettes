@@ -16,7 +16,7 @@ git pull;
 
 # Restoring bdd
 rm -v db.sqlite3
-mv -v ../db.sqlite3 .
+mv -v ../backup_bdd/db.sqlite3 .
 
 
 echo "\n${bold}→ PYTHON ENV - Activating virtualenv${normal}"
