@@ -3,6 +3,12 @@ from .models import Recette
 
 
 class RecetteSerializer(serializers.ModelSerializer):
+    """Serializer : public fields
+
+    Args:
+        serializers ([type]): [description]
+    """
+
     class Meta:
         fields = (
             "id",
@@ -10,7 +16,6 @@ class RecetteSerializer(serializers.ModelSerializer):
             "description",
             "veggie",
             "instructions",
-            "active",
             "categorie",
             "pour",
             "cooking_time",
