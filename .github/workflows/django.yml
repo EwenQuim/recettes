@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "situation = 'ci' " > recettes/env.py
       - name: Cleaning before db init
-       run: |
+        run: |
           rm db.sqlite3
           rm -r app/__pycache__
           rm -r app/migrations
