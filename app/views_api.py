@@ -8,14 +8,18 @@ from .models import Recette
 
 
 class ListRecipe(generics.ListCreateAPIView):
-    """Generates list of all recipe"""
+    """
+    Generates list of all recipe
+    """
 
     queryset = Recette.objects.all()
     serializer_class = RecetteSerializer
 
 
 class RandomRecipe(generics.ListCreateAPIView):
-    """Gives a random recipe"""
+    """
+    Gives a random recipe
+    """
 
     pks = Recette.objects.values_list("pk", flat=True)
     random_pk = random.choice(pks)
