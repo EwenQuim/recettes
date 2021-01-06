@@ -1,6 +1,4 @@
 """Views for the API"""
-import random
-
 from rest_framework import generics
 
 from .serializers import RecetteSerializer
@@ -21,8 +19,8 @@ class RandomRecipe(generics.ListCreateAPIView):
     Gives a random recipe
     """
 
-    #pks = Recette.objects.values_list("pk", flat=True)
-    #random_pk = random.choice(pks)
+    # pks = Recette.objects.values_list("pk", flat=True)
+    # random_pk = random.choice(pks)
     serializer_class = RecetteSerializer
 
     def get_queryset(self):
