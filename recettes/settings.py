@@ -56,7 +56,6 @@ ALLOWED_HOSTS = [
     "localhost",
     "recettes.quimerch.com",
     "51.77.194.101",
-    "0.0.0.0",
 ]
 
 
